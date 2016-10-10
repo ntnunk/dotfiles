@@ -6,10 +6,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-
 "git interface
 Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
 
 "filesystem
 Plugin 'scrooloose/nerdtree'
@@ -22,11 +20,15 @@ Plugin 'isnowfy/python-vim-instant-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'nelstrom/vim-markdown-preview'
+
 "python sytax checker
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/Pydiction'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
+
+" Git stuff
+Plugin 'airblade/vim-gitgutter'
 
 "auto-completion stuff
 "Plugin 'klen/python-mode'
@@ -36,6 +38,12 @@ Plugin 'klen/rope-vim'
 Plugin 'ervandew/supertab'
 ""code folding
 Plugin 'tmhedberg/SimpylFold'
+
+" UltiSnips
+Plugin 'SirVer/ultisnips'
+
+" Snippens are separated from the engine.
+Plugin 'honza/vim-snippets'
 
 "Colors!!!
 Plugin 'altercation/vim-colors-solarized'
@@ -48,11 +56,17 @@ Plugin 'xero/blaquemagick.vim'
 
 call vundle#end()
 
+" Stop complaining about unsaved buffers when switching.
+set hidden
+
 filetype plugin indent on    " enables filetype detection
 let g:SimpylFold_docstring_preview = 1
 
 "autocomplete
 let g:ycm_autoclose_preview_window_after_completion=1
+
+" Pydiction dictionary location
+let g:pydiction_location = 'home/noel/.vim/bundle/Pydiction/complete_dict'
 
 "custom keys
 let mapleader=" "
@@ -72,9 +86,17 @@ set noswapfile
 " HTML editing
 set matchpairs+=<:>
 
+" UltiSnips stuff
+"Trigger Confiuration. <tab> conflicts with YouCompleteMe
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsListSnippets="<c-s-tab>"
+
+" Let :UltiSnipsEdit split the window
+let g:UltiSnipsEditSplit="vertical"
+
 " Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set shiftround
 set expandtab
 
@@ -82,7 +104,10 @@ set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Make it obvious where 100 chars is
-set textwidth=179
+set textwidth=170
+
+" Enable the mouse to work with tmux
+set mouse=a
 
 " Scrolling
 set scrolloff=8 " Start scrolling 8 lines from margin
@@ -93,17 +118,21 @@ set sidescroll=1
 " on loss of focus or insert mode
 set rnu
 function! ToggleNumbersOn()
-  set nu!
-  set rnu
+  set number
+  set norelativenumber
 endfunction
 function! ToggleRelativeOn()
-  set rnu!
-  set nu
+  set relativenumber
+  set nonumber
 endfunction
-autocmd FocusLost * call ToggleRelativeOn()
-autocmd FocusGained * call ToggleRelativeOn()
-autocmd InsertEnter * call ToggleRelativeOn()
-autocmd InsertLeave * call ToggleRelativeOn()
+function! ToggleMixNumbers()
+  set number
+  set relativenumber
+endfunction
+autocmd FocusLost * call ToggleNumbersOn()
+autocmd FocusGained * call ToggleMixNumbers()
+autocmd InsertEnter * call ToggleNumbersOn()
+autocmd InsertLeave * call ToggleMixNumbers()
 
 "python with virtualenv support
 py << EOF
@@ -140,8 +169,11 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
+" Auto-delete trailing whitespace for file types
+autocmd FileType c,cpp,java,php,py,pyw autocmd BufWritePre <buffer> %s/\s\+$//e
+
 " Wrap text after a certain number of characters
-au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
+au BufRead,BufNewFile *.py,*.pyw, set textwidth=160
 
 " Use UNIX (\n) line endings.
 au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
@@ -160,7 +192,7 @@ autocmd FileType python set autoindent
 set backspace=indent,eol,start
 
 "Folding based on indentation:
-autocmd FileType python set foldmethod=indent
+autocmd FileType python setlocal foldmethod=indent smartindent shiftwidth=4 ts=4 et cinwords=if,elif,else,for,while,try,except,finally,def,class
 set foldlevel=99
 
 "use space to open folds
