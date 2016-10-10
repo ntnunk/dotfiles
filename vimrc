@@ -6,8 +6,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
 "git interface
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
 "filesystem
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -79,7 +82,7 @@ set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Make it obvious where 100 chars is
-set textwidth=100
+set textwidth=179
 
 " Scrolling
 set scrolloff=8 " Start scrolling 8 lines from margin
