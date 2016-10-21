@@ -91,7 +91,7 @@ call togglebg#map("<F5>")
 "colorscheme zenburn
 "set guifont=Monaco:h14
 set background=dark
-colorscheme sweyla
+colorscheme sweyla-aqua
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
