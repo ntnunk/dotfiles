@@ -14,6 +14,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim' 
 
+" Twitter client
+Plugin 'twitvim/twitvim.git'
+
+" Vimwiki
+Plugin 'mattn/calendar-vim'
+Plugin 'vimwiki/vimwiki'
+
 "html
 "  isnowfy only compatible with python not python3
 Plugin 'isnowfy/python-vim-instant-markdown'
@@ -42,7 +49,7 @@ Plugin 'tmhedberg/SimpylFold'
 " UltiSnips
 Plugin 'SirVer/ultisnips'
 
-" Snippens are separated from the engine.
+" Snippets are separated from the engine.
 Plugin 'honza/vim-snippets'
 
 "Colors!!!
@@ -53,6 +60,14 @@ Plugin 'chriskempson/tomorrow-theme'
 Plugin 'sickill/vim-monokai'
 Plugin 'andbar-ru/vim-unicon'
 Plugin 'xero/blaquemagick.vim'
+Plugin 'josuegaleas/jay'
+Plugin 'whatyouhide/vim-gotham'
+Plugin 'tomsik68/vim-crystallite'
+Plugin 'hhsnopek/vim-firewatch'
+Plugin 'owickstrom/vim-colors-paramount'
+Plugin 'limadm/vim-blues'
+Plugin 'tristanheaven/vim-colorscheme-aquamarine'
+Plugin 'lanox/lanox-vim-theme'
 
 call vundle#end()
 
@@ -69,14 +84,14 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:pydiction_location = 'home/noel/.vim/bundle/Pydiction/complete_dict'
 
 "custom keys
-let mapleader=" "
+let mapleader=","
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
 call togglebg#map("<F5>")
 "colorscheme zenburn
 "set guifont=Monaco:h14
 set background=dark
-colorscheme torte
+colorscheme sweyla
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
@@ -104,7 +119,7 @@ set expandtab
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Make it obvious where 100 chars is
-set textwidth=170
+set textwidth=100
 
 " Enable the mouse to work with tmux
 set mouse=a
@@ -134,6 +149,27 @@ autocmd FocusGained * call ToggleMixNumbers()
 autocmd InsertEnter * call ToggleNumbersOn()
 autocmd InsertLeave * call ToggleMixNumbers()
 
+" vimwiki stuff
+" Run multiple wikis
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
+
+au BufRead,BufNewFile *.wiki set filetype=vimwiki
+:autocmd FileType vimwiki map D :VimwikiMakeDiaryNote
+function! ToggleCalendar()
+  execute ":Calendar"
+  if exists("g:calendar_open")
+    if g:calendar_open == 1
+      execute "q"
+      unlet g:calendar_open
+    else
+      g:calendar_open = 1
+    end
+  else
+    let g:calendar_open = 1
+  end
+endfunction
+:autocmd FileType vimwiki map c :call ToggleCalendar()
+
 "python with virtualenv support
 py << EOF
 import os.path
@@ -158,7 +194,7 @@ au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 "spaces for indents
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
-au BufRead,BufNewFile *.py set softtabstop=4
+au BufRead,BufNewFile *.py,*.pyw set softtabstop=4
 
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red
@@ -173,7 +209,7 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 autocmd FileType c,cpp,java,php,py,pyw autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Wrap text after a certain number of characters
-au BufRead,BufNewFile *.py,*.pyw, set textwidth=160
+au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
 
 " Use UNIX (\n) line endings.
 au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
