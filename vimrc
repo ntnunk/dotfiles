@@ -21,6 +21,9 @@ Plugin 'twitvim/twitvim.git'
 Plugin 'mattn/calendar-vim'
 Plugin 'vimwiki/vimwiki'
 
+" Surround for working with quotes, brackets, etc
+Plugin 'tpope/vim-surround'
+
 "html
 "  isnowfy only compatible with python not python3
 Plugin 'isnowfy/python-vim-instant-markdown'
@@ -168,7 +171,7 @@ function! ToggleCalendar()
     let g:calendar_open = 1
   end
 endfunction
-:autocmd FileType vimwiki map c :call ToggleCalendar()
+:autocmd FileType vimwiki map C :call ToggleCalendar()
 
 "python with virtualenv support
 py << EOF
