@@ -152,6 +152,10 @@ autocmd FocusGained * call ToggleMixNumbers()
 autocmd InsertEnter * call ToggleNumbersOn()
 autocmd InsertLeave * call ToggleMixNumbers()
 
+" Show the filename in Tmux
+autocmd BufReadPost,FileReadPost,BufNewFile,BufEnter * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
+autocmd VimLeave * call system("tmux rename-window 'tmux'")
+
 " vimwiki stuff
 " Run multiple wikis
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'syntax': 'markdown', 'ext': '.wiki'}]
