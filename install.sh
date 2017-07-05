@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set .inputrc to enable Vi command mode on terminal
+ln -s $DIR/inputrc ~/.inputrc
+
 # Get the installation directory
 DIR=$(pwd)
 

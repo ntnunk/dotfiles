@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+
 "git interface
 Plugin 'tpope/vim-fugitive'
 
@@ -24,14 +25,20 @@ Plugin 'vimwiki/vimwiki'
 " Surround for working with quotes, brackets, etc
 Plugin 'tpope/vim-surround'
 
-"html
-"  isnowfy only compatible with python not python3
+" Autoclose HTML tags
+"Plugin 'vim-scripts/closetag.vim'
+
+" Autocomplete brackets, braces, and parens
+"Plugin 'Townk/vim-autoclose'
+
+" html
+" isnowfy only compatible with python not python3
 Plugin 'isnowfy/python-vim-instant-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'nelstrom/vim-markdown-preview'
 
-"python sytax checker
+" python sytax checker
 Plugin 'nvie/vim-flake8'
 Plugin 'vim-scripts/Pydiction'
 Plugin 'vim-scripts/indentpython.vim'
@@ -40,13 +47,15 @@ Plugin 'scrooloose/syntastic'
 " Git stuff
 Plugin 'airblade/vim-gitgutter'
 
-"auto-completion stuff
-"Plugin 'klen/python-mode'
+" auto-completion stuff
+" Plugin 'klen/python-mode'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'klen/rope-vim'
-"Plugin 'davidhalter/jedi-vim'
+
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
-""code folding
+
+" code folding
 Plugin 'tmhedberg/SimpylFold'
 
 " UltiSnips
@@ -80,32 +89,29 @@ set hidden
 filetype plugin indent on    " enables filetype detection
 let g:SimpylFold_docstring_preview = 1
 
-"autocomplete
+" autocomplete
 let g:ycm_autoclose_preview_window_after_completion=1
 
 " Pydiction dictionary location
 let g:pydiction_location = 'home/noel/.vim/bundle/Pydiction/complete_dict'
 
-"custom keys
+" custom keys
 let mapleader=","
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"
-call togglebg#map("<F5>")
-"colorscheme zenburn
-"set guifont=Monaco:h14
+
 set background=dark
 colorscheme sweyla-aqua
 
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
-"I don't like swap files
+" I don't like swap files
 set noswapfile
 
 " HTML editing
 set matchpairs+=<:>
 
 " UltiSnips stuff
-"Trigger Confiuration. <tab> conflicts with YouCompleteMe
+" Trigger Confiuration. <tab> conflicts with YouCompleteMe
 let g:UltiSnipsExpandTrigger="<c-tab>"
 let g:UltiSnipsListSnippets="<c-s-tab>"
 
@@ -177,7 +183,7 @@ function! ToggleCalendar()
 endfunction
 :autocmd FileType vimwiki map C :call ToggleCalendar()
 
-"python with virtualenv support
+" python with virtualenv support
 py << EOF
 import os.path
 import sys
@@ -189,16 +195,16 @@ if 'VIRTUAL_ENV' in os.environ:
   execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-"it would be nice to set tag files by the active virtualenv here
-":set tags=~/mytags "tags for ctags and taglist
-"omnicomplete
+" it would be nice to set tag files by the active virtualenv here
+" :set tags=~/mytags "tags for ctags and taglist
+" omnicomplete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
 au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
 
-"spaces for indents
+" spaces for indents
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
 au BufRead,BufNewFile *.py,*.pyw set expandtab
 au BufRead,BufNewFile *.py,*.pyw set softtabstop=4
@@ -234,14 +240,14 @@ autocmd FileType python set autoindent
 " make backspaces more powerfull
 set backspace=indent,eol,start
 
-"Folding based on indentation:
+" Folding based on indentation:
 autocmd FileType python setlocal foldmethod=indent smartindent shiftwidth=4 ts=4 et cinwords=if,elif,else,for,while,try,except,finally,def,class
 set foldlevel=99
 
-"use space to open folds
+" use space to open folds
 nnoremap <space> za 
 "----------Stop python PEP 8 stuff--------------
 
-"js stuff"
+" js stuff"
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
