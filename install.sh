@@ -31,3 +31,9 @@ fi
 
 # Create symlink for colors folder
 ln -s $DIR/vim-colors/ ~/.vim/colors
+
+# Download and install Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# Run Vim to install Plugins
+vim +PluginInstall +qall
