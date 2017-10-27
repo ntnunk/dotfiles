@@ -20,6 +20,9 @@ windows:
         - shell_command:
             vimwiki
   - window_name: Misc
+    layout: tiled
+    shell_command_before:
+        cd ~/
     panes:
       - pane
       - pane
