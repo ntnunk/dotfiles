@@ -64,6 +64,9 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine.
 Plugin 'honza/vim-snippets'
 
+" Taglist
+Plugin 'taglist.vim'
+
 "Colors!!!
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'jnurmine/Zenburn'
@@ -91,6 +94,7 @@ let g:SimpylFold_docstring_preview = 1
 
 " autocomplete
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 
 " Pydiction dictionary location
 let g:pydiction_location = 'home/noel/.vim/bundle/Pydiction/complete_dict'
@@ -98,6 +102,12 @@ let g:pydiction_location = 'home/noel/.vim/bundle/Pydiction/complete_dict'
 " custom keys
 let mapleader=","
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 set background=dark
 colorscheme sweyla-aqua
@@ -251,3 +261,7 @@ nnoremap <space> za
 " js stuff"
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
+" For Mongoose OS
+if isdirectory(expand('~/Projects/mgos/mongoose-os/fw/src'))
+    set path+=expand('~/Projects/mgos/mongoose-os/fw/src')
+endif
