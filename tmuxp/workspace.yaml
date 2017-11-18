@@ -15,6 +15,9 @@ windows:
         focus: true
       - pane
       - pane
+  - window_name: Console
+    panes:
+        - pane
   - window_name: Notes
     panes:
         - shell_command:
