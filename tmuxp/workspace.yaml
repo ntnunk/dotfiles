@@ -2,7 +2,7 @@ session_name: Development
 start_directory: /home/noel/Projects
 # before_script: ./some/script/name
 windows:
-  - window_name: Dev
+  - window_name: Wiki
     focus: True
     layout: main-vertical
     options:
@@ -13,8 +13,6 @@ windows:
       - shell_command:
           vim
         focus: true
-      - pane
-      - pane
   - window_name: Console
     panes:
         - pane
