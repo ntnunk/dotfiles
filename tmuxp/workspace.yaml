@@ -1,31 +1,25 @@
-session_name: Development
-start_directory: /home/noel/Projects
+session_name: Workspace
+start_directory: ~/
 # before_script: ./some/script/name
 windows:
   - window_name: Dev
-    focus: True
     layout: main-vertical
     options:
       main-pane-width: 150
       #    shell_command_before:
       #      - '[ -d .venv -a -f .venv/bin/activate ] && source .venv/bin/activate'
     panes:
-      - shell_command:
-          vim
-        focus: true
-      - pane
-      - pane
+        - shell_command_before:
+            - 'cd ~/Dev/Projects && vim'
   - window_name: Console
     panes:
         - pane
   - window_name: Notes
     panes:
         - shell_command:
-            vimwiki
+            vim +VimwikiIndex
   - window_name: Misc
     layout: tiled
-    shell_command_before:
-        cd ~/
     panes:
       - pane
       - pane

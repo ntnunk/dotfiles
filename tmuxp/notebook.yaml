@@ -1,0 +1,19 @@
+session_name: Development
+start_directory: /home/noel/Projects
+windows:
+  - window_name: Dev
+    focus: True
+    panes:
+      - shell_command:
+          vim
+        focus: true
+  - window_name: Console
+    panes:
+        - pane
+  - window_name: Misc
+    layout: tiled
+    shell_command_before:
+        cd ~/
+    panes:
+      - pane
+      - pane

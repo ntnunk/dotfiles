@@ -64,8 +64,22 @@ Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine.
 Plugin 'honza/vim-snippets'
 
-" Taglist
-Plugin 'taglist.vim'
+" Tagbar instead of taglist
+Plugin 'majutsushi/tagbar'
+
+if has('nvim')
+    "NeoVim doesn't support Powerline so use Airline instead
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    let g:airline_theme='angr'
+else
+    " Regular Vim, use Powerline
+    set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+    " Always show statusline
+    set laststatus=2
+    " Use 256 colours (Use this setting only if your terminal supports 256 colours)
+    set t_Co=256
+endif
 
 "Colors!!!
 Plugin 'altercation/vim-colors-solarized'
@@ -108,6 +122,12 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Toggle NerdTree
+nmap <F8> :NERDTreeToggle<CR>
+
+" Toggle Tagbar
+nmap <F9> :TagbarToggle<CR>
 
 set background=dark
 colorscheme sweyla-aqua
@@ -212,7 +232,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 "------------Start Python PEP 8 stuff----------------
 " Number of spaces that a pre-existing tab is equal to.
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
+au BufRead,BufNewFile *py,*pyw,*.c,*.h,*.ino,*.pde set tabstop=4
 
 " spaces for indents
 au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
@@ -226,16 +246,16 @@ highlight BadWhitespace ctermbg=red guibg=red
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 
 " Make trailing whitespace be flagged as bad.
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.ino,*.pde match BadWhitespace /\s\+$/
 
 " Auto-delete trailing whitespace for file types
-autocmd FileType c,cpp,java,php,py,pyw autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,java,php,py,pyw,ino,pde autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Wrap text after a certain number of characters
 au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
 
 " Use UNIX (\n) line endings.
-au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
+au BufNewFile *.py,*.pyw,*.c,*.h,*.ino,*.pde set fileformat=unix
 
 " Set the default file encoding to UTF-8:
 set encoding=utf-8
@@ -247,7 +267,7 @@ syntax on
 " Keep indentation level from previous line:
 autocmd FileType python set autoindent
 
-" make backspaces more powerfull
+" make backspaces more powerful
 set backspace=indent,eol,start
 
 " Folding based on indentation:
@@ -261,7 +281,19 @@ nnoremap <space> za
 " js stuff"
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
 
-" For Mongoose OS
-if isdirectory(expand('~/Projects/mgos/mongoose-os/fw/src'))
-    set path+=expand('~/Projects/mgos/mongoose-os/fw/src')
+" Proper handling of Arduino files
+autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+
+" Remove background set by theme
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+if has('nvim')
+    highlight Normal guibg=none
+    highlight NoneText guibg=none
 endif
+
+" Clear the gitgutter and line number bars
+highlight clear SignColumn
+highlight clear LineNr
+highlight clear TagBar
+

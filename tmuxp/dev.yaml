@@ -13,8 +13,6 @@ windows:
       - shell_command:
           vim
         focus: true
-      - pane
-      - pane
   - window_name: Notes
     panes:
         - shell_command:

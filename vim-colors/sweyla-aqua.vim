@@ -34,6 +34,7 @@ hi Folded           guifg=#FFFFFF guibg=#010000 gui=none ctermfg=255 ctermbg=16 
 hi Title            guifg=#00B1FF guibg=NONE	gui=bold ctermfg=39 ctermbg=NONE cterm=bold
 hi Visual           guifg=#5794E1 guibg=#323232 gui=none ctermfg=68 ctermbg=236 cterm=none
 hi SpecialKey       guifg=#20A997 guibg=#100F0F gui=none ctermfg=36 ctermbg=233 cterm=none
+hi Search           guifg=#008067 guibg=#323232 gui=none ctermfg=68 ctermbg=236 cterm=none
 "hi DiffChange       guibg=#4D4C00 gui=none ctermbg=58 cterm=none
 "hi DiffAdd          guibg=#26254C gui=none ctermbg=235 cterm=none
 "hi DiffText         guibg=#663266 gui=none ctermbg=241 cterm=none
