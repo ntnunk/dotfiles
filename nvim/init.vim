@@ -1,4 +1,4 @@
-" Neovim configuration file
+"  Neovim configuration file
 " based on Optixal's Neovim Init.vim
 """ Vim-Plug
 call plug#begin()
@@ -15,6 +15,7 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
+Plug 'kristijanhusak/vim-hybrid-material'
 
 " Aethetics - Additional
 Plug 'nightsense/nemo'
@@ -116,6 +117,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
 let g:airline_section_warning = ''
 "let g:airline#extensions#tabline#enabled = 1
+" air-line
+let g:airline_powerline_fonts = 1
 
 " Neovim :Terminal
 tmap <Esc> <C-\><C-n>
@@ -230,9 +233,22 @@ function! ColorZazen()
     IndentLinesEnable
 endfunction
 
+function! ColorHybrid()
+    " Hybrid Material Theme
+    " Matching Airline theme: hybrid
+    let g:airline_theme='hybrid'
+    set background=dark
+    colorscheme hybrid_material
+    color hybrid_material
+    let g:enable_bold_font=1
+    let g:enable_italic_font=1
+    let g:hybrid_transparent_background=1
+    IndentLinesEnable
+endfunction
+
 " So we can toggle both NERDTree and Tagbar together.
 " Call it 'IDE Mode'
-function ToggleSidebars()
+function! ToggleSidebars()
     :TagbarToggle
     :NERDTreeToggle
 endfunction
@@ -249,6 +265,7 @@ nmap <leader>e1 :call ColorDracula()<CR>
 nmap <leader>e2 :call ColorSeoul256()<CR>
 nmap <leader>e3 :call ColorForgotten()<CR>
 nmap <leader>e4 :call ColorZazen()<CR>
+nmap <leader>e5 :call ColorHybrid()<CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>t :call TrimWhitespace()<CR>
 xmap <leader>a gaip*
@@ -271,9 +288,5 @@ nmap <S-Tab> :bprevious<CR>
 
 " Set the Colors up last since something keeps turning 
 " the line numbers orange.
-let g:airline_theme='angr'
-color dracula
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
-
+call ColorHybrid()
 
