@@ -1,5 +1,5 @@
-""" Optixal's Neovim Init.vim
-
+" Neovim configuration file
+" based on Optixal's Neovim Init.vim
 """ Vim-Plug
 call plug#begin()
 
@@ -57,7 +57,7 @@ let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
 
 """ Coloring
 syntax on
-color dracula
+"color dracula
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none
@@ -174,7 +174,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
 """ Filetype-Specific Configurations
 
 " HTML, XML, Jinja
@@ -201,9 +200,11 @@ endfunction
 
 " Dracula Mode (Dark)
 function! ColorDracula()
-    let g:airline_theme=''
+    let g:airline_theme='angr'
     color dracula
     IndentLinesEnable
+    highlight Normal ctermbg=none
+    highlight NonText ctermbg=none
 endfunction
 
 " Seoul256 Mode (Dark & Light)
@@ -229,11 +230,18 @@ function! ColorZazen()
     IndentLinesEnable
 endfunction
 
+" So we can toggle both NERDTree and Tagbar together.
+" Call it 'IDE Mode'
+function ToggleSidebars()
+    :TagbarToggle
+    :NERDTreeToggle
+endfunction
+
 """ Custom Mappings
 
 let mapleader=" "
 nmap <leader>q :NERDTreeToggle<CR>
-nmap \ <leader>q
+nmap \ :call ToggleSidebars()<CR>
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme 
@@ -260,4 +268,12 @@ nmap <leader>n :HackerNews best<CR>J
 nmap <silent> <leader><leader> :noh<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
+
+" Set the Colors up last since something keeps turning 
+" the line numbers orange.
+let g:airline_theme='angr'
+color dracula
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
 
