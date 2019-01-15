@@ -212,10 +212,6 @@ nmap <leader>q :NerdTreeToggle<cr>
 nmap <leader>w :TagbarToggle<cr>
 nmap \ :call ToggleSidebars()<cr>
 
-" Map leader + . to escape
-inoremap jk <Esc>
-noremap kj <Esc>
-
 " Leader+r to reload config
 nmap <leader>r :so ~/.config/nvim/init.vim<cr>
 
