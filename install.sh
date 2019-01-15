@@ -37,3 +37,35 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Run Vim to install Plugins
 vim +PluginInstall +qall
+
+# Install Neovim
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install -y ctags vim-scripts neovim 
+
+if hash virtualenv 2>/dev/null; then
+    sudo apt install -y virtualenv
+fi
+
+cd ~/.config/nvim
+virtualenv -p python2 env2
+source ~/.config/nvim/env2/bin/activate
+pip install neovim
+deactivate
+
+virtualenv -p python3 env3
+source ~/.config/nvim/env3/activate
+pip install neovim
+deactivate
+
+mkdir ~/.config/nvim
+ln -s $DIR/nvim/init.vim ~/.config/nvim/init.vim
+
+if hash curl 2>/dev/null; then
+    sudo apt install -y curl
+fi
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+nvim +PluginInstall +UpdateRemotePlugins +qa
