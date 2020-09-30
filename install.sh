@@ -57,6 +57,7 @@ else
 fi
 ln -s $DIR/nvim/init.vim ~/.config/nvim/init.vim
 ln -s $DIR/nvim/configs/ ~/.config/nvim/configs
+ln -s $DIR/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 if hash curl 2>/dev/null; then
     echo "Installing Curl"
@@ -69,5 +70,13 @@ echo "Installing Plugged plugin for Neovim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+echo "Installing Powerline Fonts"
+sudo apt install fonts-powerline
+
+echo "Installing CCLS Language Server"
+sudo apt install ccls
+
 echo "Running Neovim to install plugins"
-nvim +PlugInstall +UpdateRemotePlugins +qa
+nvim --headless +PlugInstall +UpdateRemotePlugins +qa
+
+echo "Installation complete"
