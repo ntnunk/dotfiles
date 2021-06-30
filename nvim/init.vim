@@ -14,4 +14,5 @@ let NERDTreeQuitOnOpen=1
 let g:NERDTreeMinimalUI=1
 nmap <F2> :NERDTreeToggle<CR>
 
-
+" Python SimpylFold plugin
+let g:SimpylFold_docstring_preview=1
