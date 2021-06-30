@@ -10,4 +10,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-scripts/indentpython.vim'
+    Plug 'tmhedberg/SimpylFold'
+    Plug 'terryma/vim-multiple-cursors'
 call plug#end()
