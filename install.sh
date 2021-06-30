@@ -14,6 +14,9 @@ ln -s $DIR/tmux.conf ~/.tmux.conf
 # Create symlink for tmuxp
 ln -s $DIR/tmuxp/ ~/.tmuxp
 
+# Add node, npm, and yarn
+sudo apt install -y node npm yarn
+
 # Install Neovim
 #sudo add-apt-repository ppa:neovim-ppa/stable
 #sudo apt update
@@ -48,6 +51,9 @@ if [ ! -d ~/.config/nvim/env3 ]; then
     deactivate
 fi
 
+# NeoVim module for NodeJS
+sudo npm install -g neovim
+
 echo "Installing Neovim configurations"
 if [ ! -d ~/.config/nvim ]; then
     mkdir ~/.config/nvim
@@ -75,6 +81,13 @@ sudo apt install fonts-powerline
 
 echo "Installing CCLS Language Server"
 sudo apt install ccls
+
+echo "Checking for CoC CCLS Neovim Plugin './lib/extension.js not found' problem"
+if [ ! - ~/.config/coc/extensions/node_modules/coc-ccls/lib ]; then
+    echo "Found the problem. Fixing..."
+    cd ~/.config/coc/extensions/node_modules/coc-ccls
+    ln -s node_modules/ws/lib lib
+fi
 
 echo "Running Neovim to install plugins"
 nvim --headless +PlugInstall +UpdateRemotePlugins +qa
