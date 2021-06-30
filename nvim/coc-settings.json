@@ -21,5 +21,48 @@
                 }
             }
         }
-    }
+    },
+    "java.completion.enabled": true,
+    "java.configuration.runtimes": [
+      {
+        "name": "JavaSE-11",
+        "path": "/usr/lib/jvm/openjdk-11"
+      },
+      {
+        "name": "JavaSE-14",
+        "path": "/usr/lib/jvm/java-14-openjdk-amd64"
+      },
+      {
+        "name": "JavaSE-1.8",
+        "path": "/home/noel/Dev/SDK/jdk1.8.0_251"
+      },
+      {
+        "name": "J2SE-1.5",
+        "path": "/home/noel/Dev/SDK/eWON/javaetk_1.4.4",
+        "default": true
+      }
+    ],
+    "python.jediEnabled": false,
+    "yaml.schemaStore.enable": true,
+    "yaml.schemas": {
+      "https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/sam.schema.json": [
+        "template.yaml",
+        "sam-template.yaml",
+        "sam*template.yaml",
+        "aws-sam*.yaml"
+      ],
+      "https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json": [
+        "cfn-template.yaml",
+        "cfn*template.yaml",
+        "aws-cfn*.yaml"
+      ]
+    },
+    "yaml.customTags": [
+      "!Ref Scalar",
+      "!GetAtt Scalar",
+      "!Join Sequence",
+      "!Sub Scalar"
+    ]
 }
+
+
