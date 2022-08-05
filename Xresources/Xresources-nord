@@ -1,0 +1,71 @@
+UXTerm*renderFont: true
+UXTerm*faceName:   Hack
+UXTerm*faceSize:   10
+
+! !Theme Ten
+! *background: rgb:1a/1a/1a
+! *foreground: rgb:d6/d6/d6
+! *color0:     rgb:00/00/00
+! *color1:     rgb:98/56/5e
+! *color2:     rgb:66/82/5d
+! *color3:     rgb:96/91/76
+! *color4:     rgb:4d/65/85
+! *color5:     rgb:96/73/95
+! *color6:     rgb:5f/7f/7b
+! *color7:     rgb:b3/b3/b3
+! *color8:     rgb:73/73/73
+! *color9:     rgb:cf/a3/a9
+! *color10:    rgb:ca/f7/bb
+! *color11:    rgb:ff/f8/bc
+! *color12:    rgb:83/a3/be
+! *color13:    rgb:bb/a9/cf
+! *color14:    rgb:96/cc/cc
+! *color15:    rgb:ff/ff/ff
+
+! copyright (c) 2016-present arctic ice studio <development@arcticicestudio.com>
+! copyright (c) 2016-present sven greb <code@svengreb.de>
+
+! project:    nord xresources
+! version:    0.1.0
+! repository: https://github.com/arcticicestudio/nord-xresources
+! license:    mit
+
+#define nord0 #2e3440
+#define nord1 #3b4252
+#define nord2 #434c5e
+#define nord3 #4c566a
+#define nord4 #d8dee9
+#define nord5 #e5e9f0
+#define nord6 #eceff4
+#define nord7 #8fbcbb
+#define nord8 #88c0d0
+#define nord9 #81a1c1
+#define nord10 #5e81ac
+#define nord11 #bf616a
+#define nord12 #d08770
+#define nord13 #ebcb8b
+#define nord14 #a3be8c
+#define nord15 #b48ead
+
+*.foreground:   nord4
+*.background:   nord0
+*.cursorcolor:  nord4
+*fading: 35
+*fadecolor: nord3
+
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
