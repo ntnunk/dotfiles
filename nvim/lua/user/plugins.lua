@@ -141,6 +141,11 @@ return packer.startup(function(use)
   -- Python Auto-import
   use "tjdevries/apyrori.nvim"
 
+  -- Debugging
+  use "mfussenegger/nvim-dap"
+  use "mfussenegger/nvim-dap-python"
+  use "rcarriga/nvim-dap-ui"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
