@@ -66,5 +66,5 @@ alias vim='nvim'
 
 # Todo.txt
 export TODOTXT_DEFAULT_ACTION=ls
-alias t='todo-txt -d /home/$USER/fortress/Documents/VMShare/todo.cfg'
+alias t='todo-txt -d /home/$USER/Documents/VMShare/todo.cfg'
 
