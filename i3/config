@@ -174,8 +174,8 @@ bar {
 
 # Gaps configuration
 for_window [class="."] border pixel 2
-gaps inner 10
-gaps bottom 15
+gaps inner 5
+gaps bottom 5
 
 
 # Custom keybindings 
@@ -188,4 +188,14 @@ exec --no-startup-id clipit
 
 # Set the wallpaper
 #exec --no-startup-id nitrogen --set-auto ~/Downloads/ubuntu-logos-1920x1080-102050.jpg
-exec_always --no-startup-id feh --bg-scale ~/Downloads/ubuntu-logos-1920x1080-102050.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/fedora-grunge-blue.jpg
+
+# Disable screen blanking and auto-shutoff
+exec_always --no-startup-id xset s off
+exec_always --no-startup-id xset -dpms
+
+# Swap escape key and caps lock
+exec_always --no-startup-id xmodmap -e "clear lock"
+exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
+exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+
