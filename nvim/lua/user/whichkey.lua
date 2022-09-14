@@ -159,6 +159,13 @@ local mappings = {
     },
     y = { "<cmd>SymbolsOutline<cr>" , "Symbol List", },
   },
+  o = {
+    name = "Harpoon",
+    m = { "<cmd>lua require'harpoon.mark'.add_file()", "Add file" },
+    q = { "<cmd>lua require'harpoon.ui'.toggle_quick_menu()", "Menu" },
+    n = { "<cmd>lua require'harpoon.ui'.nav_next()", "Next file" },
+    p = { "<cmd>lua require'harpoon.ui'.nav_prev()", "Previous file" },
+  },
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -169,17 +176,6 @@ local mappings = {
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
-  },
-
-  t = {
-    name = "Terminal",
-    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
 
   d = {

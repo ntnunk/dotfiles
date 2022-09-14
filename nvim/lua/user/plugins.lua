@@ -122,6 +122,9 @@ return packer.startup(function(use)
     end
   }
 
+  -- Harpoon
+  use "ThePrimeagen/harpoon"
+
   -- Telescope
   use {
     "nvim-telescope/telescope.nvim",
