@@ -94,13 +94,13 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Dev "
 set $ws2 "2: Term "
-set $ws3 "3: Misc"
-set $ws4 "4: Misc"
-set $ws5 "5: Web "
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws3 "3: Term "
+set $ws4 "4: Term "
+set $ws5 "5: Term "
+set $ws6 "6: Misc"
+set $ws7 "7: Misc"
+set $ws8 "8: Misc"
+set $ws9 "9: Web "
 set $ws10 "10: Aggs"
 
 # switch to workspace
