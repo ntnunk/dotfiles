@@ -117,7 +117,8 @@ return packer.startup(function(use)
       require("symbols-outline").setup()
         vim.g.symbols_outline = {
           auto_preview = false,
-          show_relative_numbers = true
+          show_relative_numbers = true,
+          autofold_depth = 2,
         }
     end
   }
