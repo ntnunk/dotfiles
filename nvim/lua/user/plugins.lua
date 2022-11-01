@@ -50,7 +50,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use {
     "akinsho/bufferline.nvim",
-    tag = "*",
+    tag = "v2.*",
   }
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
@@ -114,12 +114,13 @@ return packer.startup(function(use)
   use {
     "simrat39/symbols-outline.nvim",
     config = function()
-      require("symbols-outline").setup()
-        vim.g.symbols_outline = {
-          auto_preview = false,
-          show_relative_numbers = true,
-          autofold_depth = 2,
-        }
+      local opts = {
+        auto_preview = false,
+        show_numbers = true,
+        show_relative_numbers = true,
+        autofold_depth = 2,
+      }
+      require("symbols-outline").setup(opts)
     end
   }
 
