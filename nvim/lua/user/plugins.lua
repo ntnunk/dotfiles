@@ -119,6 +119,9 @@ return packer.startup(function(use)
         show_numbers = true,
         show_relative_numbers = true,
         autofold_depth = 2,
+        keymaps = {
+          close = 'q',
+        }
       }
       require("symbols-outline").setup(opts)
     end
