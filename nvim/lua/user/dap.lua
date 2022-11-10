@@ -18,6 +18,23 @@ end
 dap_python.setup('~/workspace/virtenv/bin/python')
 
 
+table.insert(require('dap').configurations.python, {
+  type = 'python',
+  request = 'launch',
+  name = 'SNow Import',
+  program = '/home/fortress/workspace/virtenv3.10/bin/platform_fisapi',
+  envfile = '/home/fortress/workspace/virtenv',
+  args = {
+    '-P', 'stdin',
+    'servicenow',
+    '--days', '1',
+    '--aep-ticket',
+    '--server', 'localhost',
+    '--sub-id', 'guK8qcRxGtFShpsB8'
+ , }
+})
+
+
 -- dapui.setup()
 dapui.setup {
   icons = { expanded = "▾", collapsed = "▸", current_frame = "▸"},
