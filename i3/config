@@ -134,6 +134,18 @@ bindsym $mod+Control+l move workspace to output right
 # Assign certain apps to a specific workspace
 assign [Class="Firefox"] $ws4
 
+# Assign workspaces to specific monitors
+workspace $ws1 output DVI-D-0
+workspace $ws2 output DVI-D-0
+workspace $ws3 output DVI-D-0
+workspace $ws4 output DVI-D-0
+workspace $ws5 output DVI-D-0
+workspace $ws6 output HDMI-0
+workspace $ws7 output HDMI-0
+workspace $ws8 output HDMI-0
+workspace $ws9 output HDMI-0
+workspace $ws10 output HDMI-0
+
 # reload the configuration file
 bindsym $mod+Shift+j reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
