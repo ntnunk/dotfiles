@@ -24,7 +24,9 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+# This LIBGL business is a work-around for running alacritty when
+# Virtual box has hardware accelleration enabled.
+bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 alacritty
 
 # Load the .Xresources file to get term colors
 exec --no-startup-id xrdb -load ~/.Xresources
