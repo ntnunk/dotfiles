@@ -205,6 +205,9 @@ bindsym Print exec --no-startup-id /usr/bin/flameshot gui
 # Start a clipboard manager
 exec --no-startup-id clipit
 
+# Volume control
+exec --no-startup-id /usr/bin/volumeicon
+
 # Start flameshot
 
 # Set the wallpaper
