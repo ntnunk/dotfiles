@@ -1,0 +1,228 @@
+# roles/i3/tasks/main.yml
+# This file contains all tasks to build the i3 Window Manager
+---
+- name: Install required packages
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - meson 
+      - xcb-util-devel 
+      - startup-notification-devel
+      - xcb-util-cursor-devel
+      - xcb-util-keysyms-devel
+      - xcb-util-wm-devel
+      - xorg-x11-util-macros
+      - libxkbcommon-devel
+      - libxkbcommon-x11-devel
+      - yajl-devel
+      - cairo-devel
+      - libev-devel
+      - perl-devel
+      - libconfuse
+      - libconfuse-devel
+
+- name: Install build dependencies
+  become: true
+  shell: |
+      dnf install -y 'pkgconfig(pangocairo)'
+      dnf install -y 'pkgconfig(libpulse)'
+      dnf install -y 'pgkconfig(libnl-genl-3.0)'
+      dnf install -y 'pkgconfig(alsa)'
+
+- name: Clone xcb-util-xrm lib
+  ansible.builtin.git:
+    repo: https://github.com/Airblader/xcb-util-xrm
+    dest: "{{ repodir }}/xcb-util-xrm"
+    recursive: false
+    force: true
+
+- name: Configure and build xcb-util-xrm lib
+  shell: |
+      git submodule set-url m4 https://anongit.freedesktop.org/git/xcb/util-common-m4.git/
+      git submodule update --init
+      ./autogen.sh --prefix=/usr
+      make
+  args:
+    chdir: "{{ repodir }}/xcb-util-xrm"
+
+- name: Install xcb-util-xrm-lib
+  become: true
+  shell: make install
+  args:
+    chdir: "{{ repodir }}/xcb-util-xrm"
+      
+- name: Clone the i3 Windowmanager
+  ansible.builtin.git:
+    repo: https://github.com/i3/i3.git
+    dest: "{{ repodir }}/i3"
+    version: 4.22
+
+- name: Create i3 build dir for meson
+  ansible.builtin.file:
+    path: "{{ repodir }}/i3/build"
+    state: directory
+    mode: '0755'
+
+- name: Configure and build i3
+  shell: |
+    meson ..
+    ninja
+  args:
+    chdir: "{{ repodir }}/i3/build"
+
+- name: Install i3
+  become: true
+  shell: ninja install
+  args:
+    chdir: "{{ repodir }}/i3/build"
+
+- name: Clone i3blocks
+  ansible.builtin.git:
+    repo: https://github.com/vivien/i3blocks
+    dest: "{{ repodir }}/i3blocks"
+
+- name: Configure and build i3blocks
+  shell: |
+    ./autogen.sh
+    ./configure
+    make
+  args:
+    chdir: "{{ repodir }}/i3blocks"
+
+- name: Install i3blocks
+  become: true
+  shell: sudo make install
+  args:
+    chdir: "{{ repodir }}/i3blocks"
+
+- name: Clone the i3blocks contrib repo to get blocks modules
+  become: true
+  ansible.builtin.git:
+    repo: https://github.com/vivien/i3blocks-contrib.git
+    dest: /usr/share/i3blocks
+
+- name: Install dependencies for rofi
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - check-devel
+      - gdk-pixbuf2-devel
+
+- name: Clone the rofi app launcher/switcher
+  ansible.builtin.git:
+    repo: https://github.com/DaveDavenport/rofi
+    dest: "{{ repodir }}/rofi"
+    recursive: true
+    version: 1.7.5
+
+- name: Configure rofi build
+  shell: |
+    autoreconf -i
+    mkdir -p build
+  args:
+    chdir: "{{ repodir }}/rofi"
+
+- name: Build rofi
+  shell: |
+    ../configure
+    make
+  args:
+    chdir: "{{ repodir }}/rofi/build"
+
+- name: Install rofi
+  become: true
+  shell: make install
+  args:
+    chdir: "{{ repodir }}/rofi/build"
+
+- name: Link rofi configuration
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/rofi"
+    dest: /home/fortress/.config/rofi
+    state: link
+    force: true
+
+- name: Create the i3 Desktop file for GDM
+  become: true
+  copy: 
+    dest: "/usr/share/xsessions/i3.desktop"
+    content: |
+      [Desktop Entry]
+      Name=i3 (X11 display server)
+      Comment=This session logs you into i3wm
+      Exec=i3
+      TryExec=i3
+      Type=Application
+      DesktopNames=i3
+
+- name: Link cloned i3 Configuration
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/i3"
+    dest: /home/fortress/.config/i3
+    state: link
+    force: true
+
+- name: Link cloned i3blocks Configuration
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/i3blocks"
+    dest: /home/fortress/.config/i3blocks
+    state: link
+    force: true
+
+- name: Clone the Nitrogen utility
+  ansible.builtin.git:
+    repo: https://github.com/l3ib/nitrogen.git
+    dest: "{{ repodir }}/nitrogen"
+    force: true
+
+- name: Install required libraries
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - gtk2-devel
+      - gtkmm24-devel
+
+- name: Configure and build Nitrogen
+  shell: |
+    autoreconf -fi
+    ./configure
+    make
+  args:
+    chdir: "{{ repodir }}/nitrogen"
+
+- name: Install Nitrogen
+  become: true
+  shell: make install
+  args:
+    chdir: "{{ repodir }}/nitrogen"
+
+- name: Install ClipIt required packages
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - gtk3-devel
+
+- name: Download ClipIt source archive
+  ansible.builtin.get_url:
+    url: https://github.com/CristianHenzel/ClipIt/archive/refs/tags/v1.4.5.tar.gz
+    dest: /tmp/ClipIt-v1.4.5.tar.gz
+    mode: 0755
+
+- name: Extract the ClipIt source archive
+  ansible.builtin.unarchive:
+    src: /tmp/ClipIt-v1.4.5.tar.gz
+    dest: /tmp
+
+- name: Configure and build ClipIt
+  shell: |
+    ./autogen.sh
+    ./configure --with-gtk3
+    make
+  args:
+    chdir: /tmp/ClipIt-1.4.5
+
+- name: Install ClipIt
+  become: true
+  shell: make install
+  args:
+    chdir: /tmp/ClipIt-1.4.5

@@ -1,0 +1,19 @@
+# dev-workstation.yml
+# This is the main configuration for a Fortress RHEL dev workstation
+---
+
+- name: Dev Workstation Playbook
+  hosts: localhost
+  become_method: sudo
+  vars:
+    dvorak: true
+    repodir: /home/fortress/workspace/repos
+    emp_config_dir: "{{ repodir }}/employee_configs"
+    emp_config_name: Nunkovich_Noel
+    emp_config_os_dir: "{{ emp_config_dir }}/{{ emp_config_name }}/rhel_8.7"
+
+  roles:
+    - config
+    - nvim
+    - i3
+    - cleanup

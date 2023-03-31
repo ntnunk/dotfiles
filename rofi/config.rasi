@@ -1,0 +1,19 @@
+configuration {
+  modi: "window,drun,ssh,run,combi";
+  width: 900;
+  lines: 15;
+  columns: 1;
+  kb-cancel: "Escape,Alt-F1";
+  font: "Hack 11";
+  bw: 1;
+  show-icons: true;
+  terminal: "kitty";
+  drun-match-fields: "name,generic,exec,categories";
+  levenshtein-sort: true;
+  sidebar-mode: true;
+  combi-modi: "drun,run,ssh";
+  matching: "fuzzy";
+  combi-hide-mode-prefix: true;
+}
+
+@theme "~/.config/rofi/onedark.rasi"

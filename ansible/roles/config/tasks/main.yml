@@ -1,0 +1,122 @@
+# roles/config/tasks/main.yml
+# This file contains general setup and configuration tasks
+---
+- name: Check for employee_configs repo
+  stat:
+    path: "{{ emp_config_dir }}"
+  register: employee_config_dir
+
+- name: Clone configuration files from employee_configs repo
+  ansible.builtin.git:
+    repo: "git@bitbucket.org:bbfortressinfosec/employee_configs.git"
+    dest: "{{ emp_config_dir }}"
+    accept_hostkey: yes
+  when: not employee_config_dir.stat.exists
+
+- name: Set up the system keyboard for Dvorak and map Escape to Caps Lock
+  become: true
+  command: localectl --no-convert set-x11-keymap us pc105 dvorak caps:escape
+  when: dvorak
+
+- name: Set up the GNOME/Waylang keyboard for Dvorak
+  command: gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us+dvorak')]"
+  when: dvorak
+
+- name: Map Escape to Caps Lock for GNOME/Wayland
+  command: gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+  when: dvorak
+
+- name: Install patched fonts
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - powerline-fonts
+      - fontawesome-fonts
+
+- name: Install the kitty terminal
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - kitty
+    state: latest
+
+- name: Link cloned kitty configuration
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/kitty"
+    dest: ~/.config/kitty
+    state: link
+    force: true
+
+- name: Install Z Shell
+  become: true
+  ansible.builtin.dnf:
+    name: zsh
+    state: latest
+
+- name: Install oh my zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    depth: 1
+
+- name: Install ZSH Syntax highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git 
+    dest: "{{ repodir }}/zsh-syntax-highlighting"
+
+- name: Install Custom ZSH Plugins
+  copy:
+    src: "{{ emp_config_os_dir }}/zsh-plugins/"
+    dest: ~/.oh-my-zsh/custom/plugins/
+    directory_mode: 0755
+  tags:
+    - parentdir
+
+- name: Install Custom ZSH theme 
+  copy: 
+    src: "{{ emp_config_os_dir }}/zsh-themes/"
+    dest: ~/.oh-my-zsh/custom/themes
+    directory_mode: 0755
+  tags:
+    - parentdir
+
+- name: Link cloned ZSH configuration
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/zshrc"
+    dest: /home/fortress/.zshrc
+    state: link
+
+- name: Make ZSH the default shell
+  become: yes
+  user:
+    name: fortress
+    shell: /usr/bin/zsh
+
+- name: Symlink the Git commit message template
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/gitmessage"
+    dest: ~/.gitmessage
+    state: link
+
+- name: Set Git to use the commit message template
+  command: git config --global commit.template ~/.gitmessage
+
+- name: Set default git branch reconciliation
+  command: git config --global pull.rebase false
+
+- name: Check if bash aliases file already exists
+  stat:
+    path: /home/fortress/.bash_aliases
+  register: aliases_status
+
+- name: Backup and remove existing Bash aliases file
+  shell: mv /home/fortress/.bash_aliases /home/fortress/.bash_aliases.old
+  when:
+     aliases_status.stat.exists
+
+- name: Symlink cloned bash_aliases file
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/bash_aliases"
+    dest: /home/fortress/.bash_aliases
+    state: link
+

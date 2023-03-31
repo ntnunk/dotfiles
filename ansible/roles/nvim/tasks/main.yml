@@ -1,0 +1,66 @@
+# roles/nvim/tasks/main.yml
+# This file contains all the tasks to build and install Neovim
+---
+- name: Install required packages
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - ninja-build
+      - libtool
+      - cmake
+      - gcc
+      - gcc-c++
+      - make
+      - pkgconfig
+      - unzip
+      - gettext
+      - curl
+      - ripgrep
+    state: latest
+
+- name: Clone the Neovim archive
+  ansible.builtin.git:
+    repo: "https://github.com/neovim/neovim"
+    dest: "{{ repodir }}/neovim"
+    version: v0.8.3
+
+# cd neovim && make CMAKE_BUILD_TYPE=Release
+- name: Configure and build Neovim
+  shell: make CMAKE_BUILD_TYPE=Release
+  args:
+    chdir: "{{ repodir }}/neovim"
+
+- name: Install Neovim
+  become: true
+  command: make install
+  args:
+    chdir: "{{ repodir }}/neovim"
+
+- name: Link cloned Neovim Configuration
+  ansible.builtin.file:
+    src: "{{ emp_config_os_dir }}/nvim"
+    dest: /home/fortress/.config/nvim
+    state: link
+    force: true
+
+- name: Install related Python packages
+  ansible.builtin.pip:
+    name:
+      - autopep8
+      - flake8
+      - pynvim
+
+- name: Install the patched version of the 'Hack' font
+  shell: |
+    mkdir -p ~/.local/share/fonts
+    cd ~/.local/share/fonts
+    curl -fLo "Hack Regular Nerd Font Complete Mono.ttf" \
+      https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf
+    curl -fLo "Hack Italic Nerd Font Complete Mono.ttf" \
+      https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Hack/Italic/complete/Hack%20Italic%20Nerd%20Font%20Complete%20Mono.ttf
+    curl -fLo "Hack Bold Nerd Font Complete Mono.ttf" \
+      https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete%20Mono.ttf
+    curl -fLo "Hack Bold Italic Nerd Font Complete Mono.ttf" \
+      https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-font
+    fc-cache -f -v
+

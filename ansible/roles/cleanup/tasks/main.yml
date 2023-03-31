@@ -1,0 +1,42 @@
+# roles/cleanup/tasks/main.yml
+# This file contains post-configuration cleanup tasks
+---
+- name: Remove xcb-util-xrm library source repository
+  ansible.builtin.file:
+    path: "{{ repodir }}/xcb-util-xrm"
+    state: absent
+
+- name: Remove i3 source repository
+  ansible.builtin.file:
+    path: "{{ repodir }}/i3"
+    state: absent
+ 
+- name: Remove i3blocks source repository
+  ansible.builtin.file:
+    path: "{{ repodir }}/i3blocks"
+    state: absent
+
+- name: Remove Rofi source repository
+  ansible.builtin.file:
+    path: "{{ repodir }}/rofi"
+    state: absent
+
+- name: Remove Nitrogen source repository
+  ansible.builtin.file:
+    path: "{{ repodir }}/nitrogen"
+    state: absent
+
+- name: Remove Neovim source repository
+  ansible.builtin.file:
+    path: "{{ repodir }}/nitrogen"
+    state: absent
+
+- name: Remove ClipIt source archive
+  ansible.builtin.file:
+    path: /tmp/ClipIt-v1.4.5.tar.gz
+    state: absent
+
+- name: Remove ClipIt build directory
+  ansible.builtin.file:
+    path: /tmp/ClipIt-1.4.5
+    state: absent
