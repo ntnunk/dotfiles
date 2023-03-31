@@ -24,7 +24,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty 
 
 # Load the .Xresources file to get term colors
 exec --no-startup-id xrdb -load ~/.Xresources
@@ -33,8 +33,9 @@ exec --no-startup-id xrdb -load ~/.Xresources
 bindsym $mod+Shift+apostrophe kill
 
 # start dmenu (a program launcher)
-bindsym $mod+e exec --no-startup-id dmenu_run
+#bindsym $mod+e exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
+bindsym $mod+e exec "rofi -show combi"
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -181,11 +182,12 @@ gaps bottom 15
 # Custom keybindings 
 bindsym $mod+shift+f "exec --no-startup-id i3-msg workspace 5; exec /usr/bin/firefox"
 bindsym $mod+shift+c "exec --no-startup-id i3-msg workspace 6; exec /usr/bin/code"
-bindsym Mod4+e exec --no-startup-id /usr/bin/caja
+bindsym Mod4+e exec --no-startup-id /usr/bin/nautilus
 
 # Start a clipboard manager
-exec --no-startup-id clipit
+exec --no-startup-id /usr/local/bin/clipit
 
 # Set the wallpaper
-#exec --no-startup-id nitrogen --set-auto ~/Downloads/ubuntu-logos-1920x1080-102050.jpg
-exec_always --no-startup-id feh --bg-scale ~/Downloads/ubuntu-logos-1920x1080-102050.jpg
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/rhel-background.jpg
+exec_always --no-startup-id nitrogen --restore
+

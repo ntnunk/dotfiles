@@ -31,7 +31,7 @@ ZSH_THEME="fox-fis"
 plugins=(git virtualenv shrink-path fis-branch vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/workspace/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -53,18 +53,17 @@ fi
 # Example aliases
 alias vim="nvim"
 
-alias dev="tmuxp load ~/.tmuxp/dev.yaml"
-alias workspace="tmuxp load ~/.tmuxp/workspace.yaml"
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
 
-# Fortress Environment Config
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias python='python3'
-alias pip='pip3'
-alias vim='nvim'
+# Specific info for Fortress Information Security
+if [ -f ~/.fis_info ]; then
+  . ~/.fis_info
+fi
 
 # Todo.txt
 export TODOTXT_DEFAULT_ACTION=ls
 alias t='todo-txt -d /home/$USER/Documents/VMShare/todo.cfg'
 
+source ~/workspace/virtenv/bin/activate
