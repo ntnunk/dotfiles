@@ -55,3 +55,4 @@ keymap("n", "N", "Nzzzv", opts)
 
 -- <Leader-s> Start replace command with current word under cursor
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+

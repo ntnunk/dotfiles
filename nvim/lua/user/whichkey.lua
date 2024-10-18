@@ -107,7 +107,7 @@ local mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+    g = { "<cmd>LazyGit<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -121,10 +121,20 @@ local mappings = {
     },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+    C = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = {
       "<cmd>Gitsigns diffthis HEAD<cr>",
       "Diff",
+    },
+    c = {
+      name = "Conflicts",
+      o = { "<cmd>GitConflictChooseOurs<cr>", "Choose Ours" },
+      t = { "<cmd>GitConflictChooseTheirs<cr>", "Choose Theirs" },
+      b = { "<cmd>GitConflictChooseBoth<cr>", "Choose Both" },
+      e = { "<cmd>GitConflictChooseNone<cr>", "Choose None" },
+      n = { "<cmd>GitConflictNextConflict<cr>", "Next Conflict" },
+      p = { "<cmd>GitConflictPrevConflict<cr>", "Previous Conflict" },
+      f = { "<cmd>GitConflictListQf<cr>", "Get All To Quick-fix" },
     },
   },
 

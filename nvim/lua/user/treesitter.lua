@@ -24,4 +24,8 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
+  pyfold = {
+    enable = true,
+    custom_foldtext = true,
+  }
 }

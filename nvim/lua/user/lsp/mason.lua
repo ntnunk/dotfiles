@@ -12,10 +12,10 @@ if not status_ok_1 then
 end
 
 local servers = {
-  "tsserver",
+  "ts_ls",
   "lua_ls",
   "pyright",
-  "bashls"
+  "bashls",
 }
 
 -- Here we declare which settings to pass to the mason, and also ensure servers are installed. If not, they will be installed automatically.
@@ -72,7 +72,24 @@ require("mason-lspconfig").setup_handlers {
       }
     }
     lspconfig["lua_ls"].setup(lua_opts)
-  end
+  end,
+
+  ["pyright"] = function()
+    local pyright_opts = {
+      on_attach = require("user.lsp.handlers").on_attach,
+      capabilities = require("user.lsp.handlers").capabilities,
+      cmd = {"pyright-langserver", "--max-old-space-size=3072", "--stdio"},
+    }
+    lspconfig["pyright"].setup(pyright_opts)
+  end,
+
+  --["gitlab_code_suggestions"] = function()
+  --  local gitlab_opts = {
+  --    on_attach = require("user.lsp.handlers").on_attach,
+  --    capabilities = require("user.lsp.handlers").capabilities
+  --  }
+  --  lspconfig["gitlab_code_suggestions"].setup(gitlab_opts)
+  --end
 }
 
 -- loop through the servers
