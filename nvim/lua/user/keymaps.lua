@@ -56,3 +56,24 @@ keymap("n", "N", "Nzzzv", opts)
 -- <Leader-s> Start replace command with current word under cursor
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 
+vim.cmd([[
+let g:vimspector_sidebar_width = 85
+let g:vimspector_bottombar_height = 15
+let g:vimspector_terminal_maxwidth = 70
+]])
+
+vim.cmd([[
+  nmap <F9> <cmd>call vimspector#Launch()<cr>
+  nmap <F5> <cmd>call vimspector#StepOver()<cr>
+  nmap <F8> <cmd>call vimspector#Reset()<cr>
+  nmap <F11> <cmd>call vimspector#StepOver()<cr>")
+  nmap <F12> <cmd>call vimspector#StepOut()<cr>")
+  nmap <F10> <cmd>call vimspector#StepInto()<cr>")
+]])
+keymap("n", "Db", ":call vimspector#ToggleBreakpoint()<cr>", opts)
+keymap("n", "Db", ":call vimspector#AddWatch()<cr>", opts)
+keymap("n", "Db", ":call vimspector#Evaluate()<cr>", opts)
+keymap("n", "<leader>tn", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2, zsh <CR> ", opts)
+keymap('n', "tt", ":FloatermToggle myfloat<CR>", opts)
+keymap('t', "<Esc>", "<C-\\><C-n>:q<CR>", opts)
+

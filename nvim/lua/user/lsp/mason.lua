@@ -78,7 +78,8 @@ require("mason-lspconfig").setup_handlers {
     local pyright_opts = {
       on_attach = require("user.lsp.handlers").on_attach,
       capabilities = require("user.lsp.handlers").capabilities,
-      cmd = {"pyright-langserver", "--max-old-space-size=3072", "--stdio"},
+      --cmd = {"pyright-langserver", "--max-old-space-size=3072", "--stdio"},
+      cmd = {"pyright-langserver", "--stdio"},
     }
     lspconfig["pyright"].setup(pyright_opts)
   end,

@@ -65,6 +65,14 @@ return packer.startup(function(use)
     "folke/which-key.nvim",
     tag = "v1.6.1"
   })
+  use({
+    "norcalli/nvim-colorizer.lua",
+    require("colorizer").setup({
+      'css';
+      'javascript';
+      'python'
+    })
+  })
 	use({
 		"ur4ltz/surround.nvim",
 		config = function()
@@ -96,13 +104,22 @@ return packer.startup(function(use)
 	use("projekt0n/github-nvim-theme")
 	use("shaunsingh/nord.nvim")
 
-	-- cmp plugins
+  -- Completion framework
 	use("hrsh7th/nvim-cmp") -- The completion plugin
+
+  -- LSP Completion Source
+	use("hrsh7th/cmp-nvim-lsp")
+
+	-- Useful completion sources
+  use("hrsh7th/cmp-nvim-lua")
+  use("hrsh7th/cmp-nvim-lsp-signature-help")
+  use("hrsh7th/cmp-vsnip")
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
+	use("hrsh7th/vim-vsnip") -- path completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
-	use("hrsh7th/cmp-nvim-lsp")
+
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -141,6 +158,19 @@ return packer.startup(function(use)
 			})
 		end,
 	})
+
+  use( "simrat39/rust-tools.nvim" )
+  local rt = require("rust-tools")
+  rt.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        -- hover actions
+        vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+        -- Code action groups
+        vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr})
+      end
+    }
+  })
 
 	use({
 		"simrat39/symbols-outline.nvim",
@@ -190,6 +220,11 @@ return packer.startup(function(use)
 
 	-- Python Auto-import
 	use("tjdevries/apyrori.nvim")
+
+  -- Vimspector
+  use("puremourning/vimspector")
+
+  use("voldikss/vim-floaterm")
 
 	-- Debugging
 	use("mfussenegger/nvim-dap")

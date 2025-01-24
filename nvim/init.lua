@@ -1,12 +1,14 @@
 --vim.opt.termguicolors = true
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+--vim.opt.foldmethod = "expr"
+--vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.opt.foldcolumn = "0"
 -- vim.opt.foldtext = ""
 -- vim.opt.foldlevel = 99
 -- vim.opt.foldlevelstart = 99
 -- vim.opt.foldnestmax = 4
-vim.opt.foldenable = false
+--vim.opt.foldenable = false
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_tresitter#foldexpr()"
 
 require "user.options"
 require "user.keymaps"

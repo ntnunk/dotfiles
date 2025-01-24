@@ -21,7 +21,7 @@ export DISABLE_AUTO_TITLE='true'
 #ZSH_THEME="agnoster-fis"
 
 # Custom theme for Fortress Dev based the Fox theme
-ZSH_THEME="fox-fis"
+ZSH_THEME="fox"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -31,7 +31,7 @@ ZSH_THEME="fox-fis"
 plugins=(git virtualenv shrink-path fis-branch vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-source ~/workspace/repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
@@ -58,12 +58,12 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # Specific info for Fortress Information Security
-if [ -f ~/.fis_info ]; then
-  . ~/.fis_info
-fi
+#if [ -f ~/.fis_info ]; then
+#  . ~/.fis_info
+#fi
 
 # Todo.txt
-export TODOTXT_DEFAULT_ACTION=ls
-alias t='todo-txt -d /home/$USER/Documents/VMShare/todo.cfg'
+#export TODOTXT_DEFAULT_ACTION=ls
+#alias t='todo-txt -d /home/$USER/Documents/VMShare/todo.cfg'
 
-source ~/workspace/virtenv/bin/activate
+#source ~/workspace/virtenv/bin/activate

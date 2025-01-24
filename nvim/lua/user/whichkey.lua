@@ -188,7 +188,12 @@ local mappings = {
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
-
+  t = {
+    name = "Term",
+    n = { "<cmd>FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 zsh <CR> ", "New Terminal Session" },
+    t = { "<cmd>FloatermToggle myfloat<CR>", "Toggle Terminal" },
+    k = { "<cmd>FloatermKill myfloat<CR>", "Kill Terminal" },
+  },
   d = {
     name = "Debug",
     b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "breakpoint" },

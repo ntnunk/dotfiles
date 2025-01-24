@@ -7,7 +7,7 @@ configs.setup {
   ensure_installed = {
     "c", "cmake", "cpp", "css", "dockerfile", "go", "hjson", "html", "java",
     "javascript", "json", "json5", "llvm", "lua", "make",
-    "markdown", "python", "regex", "typescript", "vim", "yaml"
+    "markdown", "python", "regex", "typescript", "vim", "yaml", "rust", "toml"
   },
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "" }, -- List of parsers to ignore installing

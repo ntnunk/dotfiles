@@ -1,4 +1,5 @@
-local colorscheme = "onedark"
+--local colorscheme = "onedark"
+local colorscheme = "nord"
 
 if colorscheme == "tokyonight" then
   vim.g.tokyonight_style = "storm"
