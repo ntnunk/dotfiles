@@ -7,9 +7,11 @@ function run {
   fi
 }
 # Stop the screen from blanking every 10 minutes
-xset -dpms
-xset s 0 0
-xset s off
+run xset -dpms
+run xset s 0 0
+run xset s off
+run setxkbmap -option caps:escape
+
 
 run xrandr --output HDMI-0 --left-of DVI-D-0
 run sleep 5
