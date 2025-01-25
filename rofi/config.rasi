@@ -14,6 +14,23 @@ configuration {
   combi-modi: "drun,run,ssh";
   matching: "fuzzy";
   combi-hide-mode-prefix: true;
+
+  display-ssh:    "";
+  display-run:    "";
+  display-drun:   "";
+  display-window: "";
+  display-combi:  "";
+  show-icons:     true;
 }
 
-@theme "~/.config/rofi/onedark.rasi"
+@theme "~/.config/rofi/nord.rasi"
+
+listview {
+  lines: 6;
+  columns: 2;
+}
+
+window {
+  width: 30%;
+}
+

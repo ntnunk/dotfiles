@@ -136,7 +136,7 @@ keys = [
             'dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
             '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous')),
     Key([mod], 'b', lazy.spawn('firefox')),
-    Key([mod], 'd', lazy.spawn('rofi -show run')),
+    Key([mod], 'd', lazy.spawn('rofi -show combi')),
     Key([mod], 'e', lazy.spawn('nautilus')),
 ]
 
@@ -289,7 +289,7 @@ screens = [
                 widget.CPU(background=Nord[4], **powerline),
                 widget.Memory(background=Nord[6], measure_mem='G', **powerline),
                 widget.Systray(background=Nord[7], **powerline),
-                widget.Clock(foreground='#d6d6d6', background=Nord[8],
+                widget.Clock(foreground=Nord[0], background=Nord[8],
                              format="%Y-%m-%d %a %I:%M %p", **powerline),
                 widget.QuickExit(),
             ],
@@ -304,28 +304,28 @@ screens = [
         # x11_drag_polling_rate = 60,
 
     ),
-    Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(background=Nord[4],
-                                     foreground=Nord[2]),
-                widget.GroupBox(**group_box_settings),
-                widget.Prompt(),
-                widget.WindowName(foreground='e5b567', fontsize=16),
-                widget.Chord(
-                    chords_color={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Clock(foreground='#d6d6d6',
-                             format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
-            ],
-            24,
-            border_color=Nord[8]
-        )
-    )
+    #Screen(
+    #    top=bar.Bar(
+    #        [
+    #            widget.CurrentLayout(background=Nord[4],
+    #                                 foreground=Nord[2]),
+    #            widget.GroupBox(**group_box_settings),
+    #            widget.Prompt(),
+    #            widget.WindowName(foreground='e5b567', fontsize=16),
+    #            widget.Chord(
+    #                chords_color={
+    #                    "launch": ("#ff0000", "#ffffff"),
+    #                },
+    #                name_transform=lambda name: name.upper(),
+    #            ),
+    #            widget.Clock(foreground='#d6d6d6',
+    #                         format="%Y-%m-%d %a %I:%M %p"),
+    #            widget.QuickExit(),
+    #        ],
+    #        24,
+    #        border_color=Nord[8]
+    #    )
+    #)
 ]
 
 # Drag floating layouts.

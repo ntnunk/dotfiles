@@ -65,14 +65,14 @@ return packer.startup(function(use)
     "folke/which-key.nvim",
     tag = "v1.6.1"
   })
-  use({
-    "norcalli/nvim-colorizer.lua",
-    require("colorizer").setup({
-      'css';
-      'javascript';
-      'python'
-    })
-  })
+  --use({
+  --  "norcalli/nvim-colorizer.lua",
+  --  require("colorizer").setup({
+  --    'css';
+  --    'javascript';
+  --    'python'
+  --  })
+  --})
 	use({
 		"ur4ltz/surround.nvim",
 		config = function()
@@ -159,18 +159,18 @@ return packer.startup(function(use)
 		end,
 	})
 
-  use( "simrat39/rust-tools.nvim" )
-  local rt = require("rust-tools")
-  rt.setup({
-    server = {
-      on_attach = function(_, bufnr)
-        -- hover actions
-        vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-        -- Code action groups
-        vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr})
-      end
-    }
-  })
+  --use( "simrat39/rust-tools.nvim" )
+  --local rt = require("rust-tools")
+  --rt.setup({
+  --  server = {
+  --    on_attach = function(_, bufnr)
+  --      -- hover actions
+  --      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+  --      -- Code action groups
+  --      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr})
+  --    end
+  --  }
+  --})
 
 	use({
 		"simrat39/symbols-outline.nvim",
@@ -224,12 +224,12 @@ return packer.startup(function(use)
   -- Vimspector
   use("puremourning/vimspector")
 
-  use("voldikss/vim-floaterm")
+  --use("voldikss/vim-floaterm")
 
 	-- Debugging
-	use("mfussenegger/nvim-dap")
-	use("mfussenegger/nvim-dap-python")
-	use("rcarriga/nvim-dap-ui")
+	--use("mfussenegger/nvim-dap")
+	--use("mfussenegger/nvim-dap-python")
+	--use("rcarriga/nvim-dap-ui")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
