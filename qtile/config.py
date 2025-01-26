@@ -34,8 +34,8 @@ from qtile_extras.widget.decorations import PowerLineDecoration
 
 from colors import Nord
 
-mod = "mod1"
-terminal = "kitty"
+mod = 'mod1'
+terminal = 'kitty'
 
 floating_layout = layout.Floating(
     border_focus=Nord[8],
@@ -67,54 +67,54 @@ keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
     # Switch between windows
-    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([mod], "space", lazy.layout.next(),
-        desc="Move window focus to other window"),
+    Key([mod], 'h', lazy.layout.left(), desc='Move focus to left'),
+    Key([mod], 'l', lazy.layout.right(), desc='Move focus to right'),
+    Key([mod], 'j', lazy.layout.down(), desc='Move focus down'),
+    Key([mod], 'k', lazy.layout.up(), desc='Move focus up'),
+    Key([mod], 'space', lazy.layout.next(),
+        desc='Move window focus to other window'),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
-        desc="Move window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
-        desc="Move window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, 'shift'], 'h', lazy.layout.shuffle_left(),
+        desc='Move window to the left'),
+    Key([mod, 'shift'], 'l', lazy.layout.shuffle_right(),
+        desc='Move window to the right'),
+    Key([mod, 'shift'], 'j', lazy.layout.shuffle_down(), desc='Move window down'),
+    Key([mod, 'shift'], 'k', lazy.layout.shuffle_up(), desc='Move window up'),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(),
-        desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(),
-        desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+    Key([mod, 'control'], 'h', lazy.layout.grow_left(),
+        desc='Grow window to the left'),
+    Key([mod, 'control'], 'l', lazy.layout.grow_right(),
+        desc='Grow window to the right'),
+    Key([mod, 'control'], 'j', lazy.layout.grow_down(), desc='Grow window down'),
+    Key([mod, 'control'], 'k', lazy.layout.grow_up(), desc='Grow window up'),
+    Key([mod], 'n', lazy.layout.normalize(), desc='Reset all window sizes'),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key(
-        [mod, "shift"],
-        "Return",
+        [mod, 'shift'],
+        'Return',
         lazy.layout.toggle_split(),
-        desc="Toggle between split and unsplit sides of stack",
+        desc='Toggle between split and unsplit sides of stack',
     ),
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], 'Return', lazy.spawn(terminal), desc='Launch terminal'),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_screen(), desc="Toggle between layouts"),
-    Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
+    Key([mod], 'Tab', lazy.next_screen(), desc='Toggle between layouts'),
+    Key([mod], 'q', lazy.window.kill(), desc='Kill focused window'),
     Key(
         [mod],
-        "f",
+        'f',
         lazy.window.toggle_fullscreen(),
-        desc="Toggle fullscreen on the focused window",
+        desc='Toggle fullscreen on the focused window',
     ),
-    Key([mod], "t", lazy.window.toggle_floating(),
-        desc="Toggle floating on the focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], 't', lazy.window.toggle_floating(),
+        desc='Toggle floating on the focused window'),
+    Key([mod, 'control'], 'r', lazy.reload_config(), desc='Reload the config'),
+    Key([mod, 'control'], 'q', lazy.shutdown(), desc='Shutdown Qtile'),
+    Key([mod], 'r', lazy.spawncmd(), desc='Spawn a command using a prompt widget'),
     Key([], 'XF86AudioLowerVolume', lazy.spawn('amixer sset Master,0 5%-')),
     Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer sset Master,0 5%+')),
     Key([], 'XF86AudioMute', lazy.spawn('amixer sset Master,0 toggle')),
@@ -137,7 +137,7 @@ keys = [
             '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous')),
     Key([mod], 'b', lazy.spawn('firefox')),
     Key([mod], 'd', lazy.spawn('rofi -show combi')),
-    Key([mod], 'e', lazy.spawn('nautilus')),
+    Key([mod], 'e', lazy.spawn('thunar')),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -146,11 +146,11 @@ keys = [
 for vt in range(1, 8):
     keys.append(
         Key(
-            ["control", "mod1"],
-            f"f{vt}",
+            ['control', 'mod1'],
+            f'f{vt}',
             lazy.core.change_vt(vt).when(
-                func=lambda: qtile.core.name == "wayland"),
-            desc=f"Switch to VT{vt}",
+                func=lambda: qtile.core.name == 'wayland'),
+            desc=f'Switch to VT{vt}',
         )
     )
 
@@ -177,19 +177,19 @@ for i in groups:
                 [mod],
                 i.name,
                 lazy.group[i.name].toscreen(),
-                desc=f"Switch to group {i.name}",
+                desc=f'Switch to group {i.name}',
             ),
             # mod + shift + group number = switch to & move focused window to group
             Key(
-                [mod, "shift"],
+                [mod, 'shift'],
                 i.name,
                 lazy.window.togroup(i.name, switch_group=True),
-                desc=f"Switch to & move focused window to group {i.name}",
+                desc=f'Switch to & move focused window to group {i.name}',
             ),
             # Or, use below if you prefer not to switch to that group.
             # # mod + shift + group number = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
+            # Key([mod, 'shift'], i.name, lazy.window.togroup(i.name),
+            #     desc='move focused window to group {}'.format(i.name)),
         ]
     )
 
@@ -201,7 +201,7 @@ groups.append(
                      opacity=1),
             DropDown('mixer', 'pavucontrol', width=0.4, height=0.6, x=0.3,
                      y=0.1, opacity=1),
-            DropDown('calc', 'gnome-calculator', width=0.2, height=0.6, x=0.3,
+            DropDown('calc', 'qalculate-gtk', width=0.2, height=0.6, x=0.3,
                      y=0.1, opacity=1)
         ]
     )
@@ -223,7 +223,7 @@ layout_theme = {
 layouts = [
     layout.MonadTall(**layout_theme),
     layout.Columns(border_focus_stack=[
-                   "#d75f5f", "#8f3d3d"], border_width=4),
+                   '#d75f5f', '#8f3d3d'], border_width=4),
     layout.Max(),
     layout.Floating(),
     # Try more layouts by unleashing below layouts.
@@ -239,8 +239,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=10,
+    font='sans',
+    fontsize=14,
     padding=3,
     background=Nord[0]
 )
@@ -281,7 +281,7 @@ screens = [
                                   **powerline),
                 widget.Chord(
                     chords_color={
-                        "launch": ("#ff0000", "#ffffff"),
+                        'launch': ('#ff0000', '#ffffff'),
                     },
                     name_transform=lambda name: name.upper(),
                     **powerline
@@ -290,13 +290,13 @@ screens = [
                 widget.Memory(background=Nord[6], measure_mem='G', **powerline),
                 widget.Systray(background=Nord[7], **powerline),
                 widget.Clock(foreground=Nord[0], background=Nord[8],
-                             format="%Y-%m-%d %a %I:%M %p", **powerline),
+                             format='%Y-%m-%d %a %I:%M %p', **powerline),
                 widget.QuickExit(),
             ],
             24,
             border_color=Nord[8],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            # border_color=['ff00ff', '000000', 'ff00ff', '000000']  # Borders are magenta
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
@@ -314,12 +314,12 @@ screens = [
     #            widget.WindowName(foreground='e5b567', fontsize=16),
     #            widget.Chord(
     #                chords_color={
-    #                    "launch": ("#ff0000", "#ffffff"),
+    #                    'launch': ('#ff0000', '#ffffff'),
     #                },
     #                name_transform=lambda name: name.upper(),
     #            ),
     #            widget.Clock(foreground='#d6d6d6',
-    #                         format="%Y-%m-%d %a %I:%M %p"),
+    #                         format='%Y-%m-%d %a %I:%M %p'),
     #            widget.QuickExit(),
     #        ],
     #        24,
@@ -330,11 +330,11 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
+    Drag([mod], 'Button1', lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
+    Drag([mod], 'Button3', lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Click([mod], 'Button2', lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
@@ -344,7 +344,7 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 auto_fullscreen = True
-focus_on_window_activation = "smart"
+focus_on_window_activation = 'smart'
 reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
@@ -366,7 +366,7 @@ wl_xcursor_size = 24
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = 'LG3D'
 
 
 @hook.subscribe.startup_once

@@ -19,5 +19,6 @@ run picom --experimental-backends --config $HOME/.config/qtile/picom.conf &
 run feh --bg-scale ~/Pictures/nord-wallpaper-01.webp
 run nm-applet
 run flameshot
+run greenclip daemon
 #run pavucontrol
 

@@ -89,6 +89,15 @@ return packer.startup(function(use)
     },
   })
 
+  use("mortepau/codicons.nvim")
+  use({
+    'glepnir/nerdicons.nvim',
+    cmd = 'NerdIcons', 
+    config = function() 
+      require('nerdicons').setup({})
+    end
+  })
+
 	-- Colorschemes
 	-- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
 	use("lunarvim/darkplus.nvim")
@@ -125,20 +134,6 @@ return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip") --snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-	-- -- Gitlab code completion
-	--vim.env.GITLAB_VIM_URL = "https://gitlab.com"
-	--use {
-	--  "git@gitlab.com:gitlab-org/editor-extensions/gitlab.vim.git",
-	--  config = function()
-	--    local opts = {
-	--      force = true,
-	--      prompt_user = true,
-	--      output_encoding = 'utf-8',
-	--    }
-	--    require('gitlab').setup(opts)
-	--  end
-	--}
-
 	-- LSP
 	use({
 		"williamboman/mason.nvim",
@@ -159,18 +154,19 @@ return packer.startup(function(use)
 		end,
 	})
 
-  --use( "simrat39/rust-tools.nvim" )
-  --local rt = require("rust-tools")
-  --rt.setup({
-  --  server = {
-  --    on_attach = function(_, bufnr)
-  --      -- hover actions
-  --      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-  --      -- Code action groups
-  --      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr})
-  --    end
-  --  }
-  --})
+  use("simrat39/rust-tools.nvim")
+  use('mfussenegger/nvim-dap')
+  local rt = require("rust-tools")
+  rt.setup({
+    server = {
+      on_attach = function(_, bufnr)
+        -- hover actions
+        vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+        -- Code action groups
+        vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr})
+      end
+    }
+  })
 
 	use({
 		"simrat39/symbols-outline.nvim",
