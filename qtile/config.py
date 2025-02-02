@@ -306,7 +306,7 @@ screens = [
                 widget.CurrentLayout(background=Nord[4],
                                      foreground=Nord[2], **powerline_fs),
                 widget.GroupBox(**group_box_settings, **powerline_fs),
-                widget.WindowName(foreground='e5b567', fontsize=16, **powerline_bs),
+                widget.WindowName(background=Nord[0], fontsize=16, **powerline_bs),
                 widget.Clock(foreground=Nord[0], background=Nord[8],
                              format='%Y-%m-%d %a %I:%M %p', **powerline_bs),
             ],
