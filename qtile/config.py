@@ -256,7 +256,7 @@ group_box_settings = {
     'highlight_color': Nord[3],
     'block_highlight_text_color': Nord[3],
     'this_current_screen_border': Nord[5],
-    'this_screen_border': Nord[0],
+    'this_screen_border': Nord[6],
     'other_current_screen_border': Nord[6],
     'other_screen_border': Nord[6],
     'foreground': Nord[2],
@@ -265,8 +265,11 @@ group_box_settings = {
     'on_mouse_wheel': False
 }
 
-powerline = {
+powerline_bs = {
     'decorations': [PowerLineDecoration(path='back_slash')]
+}
+powerline_fs = {
+    'decorations': [PowerLineDecoration(path='forward_slash')]
 }
 
 screens = [
@@ -274,23 +277,16 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayout(
-                    background=Nord[4], foreground=Nord[2], **powerline
+                    background=Nord[4], foreground=Nord[2], **powerline_fs
                 ),
-                widget.GroupBox(**group_box_settings, **powerline),
+                widget.GroupBox(**group_box_settings, **powerline_fs),
                 widget.WindowName(background=Nord[0], fontsize=16,
-                                  **powerline),
-                widget.Chord(
-                    chords_color={
-                        'launch': ('#ff0000', '#ffffff'),
-                    },
-                    name_transform=lambda name: name.upper(),
-                    **powerline
-                ),
-                widget.CPU(background=Nord[4], **powerline),
-                widget.Memory(background=Nord[6], measure_mem='G', **powerline),
-                widget.Systray(background=Nord[7], **powerline),
+                                  **powerline_bs),
+                widget.CPU(background=Nord[4], **powerline_fs),
+                widget.Memory(background=Nord[6], measure_mem='G', **powerline_bs),
+                widget.Systray(background=Nord[7], **powerline_bs),
                 widget.Clock(foreground=Nord[0], background=Nord[8],
-                             format='%Y-%m-%d %a %I:%M %p', **powerline),
+                             format='%Y-%m-%d %a %I:%M %p', **powerline_bs),
                 widget.QuickExit(),
             ],
             24,
@@ -304,28 +300,20 @@ screens = [
         # x11_drag_polling_rate = 60,
 
     ),
-    #Screen(
-    #    top=bar.Bar(
-    #        [
-    #            widget.CurrentLayout(background=Nord[4],
-    #                                 foreground=Nord[2]),
-    #            widget.GroupBox(**group_box_settings),
-    #            widget.Prompt(),
-    #            widget.WindowName(foreground='e5b567', fontsize=16),
-    #            widget.Chord(
-    #                chords_color={
-    #                    'launch': ('#ff0000', '#ffffff'),
-    #                },
-    #                name_transform=lambda name: name.upper(),
-    #            ),
-    #            widget.Clock(foreground='#d6d6d6',
-    #                         format='%Y-%m-%d %a %I:%M %p'),
-    #            widget.QuickExit(),
-    #        ],
-    #        24,
-    #        border_color=Nord[8]
-    #    )
-    #)
+    Screen(
+        top=bar.Bar(
+            [
+                widget.CurrentLayout(background=Nord[4],
+                                     foreground=Nord[2], **powerline_fs),
+                widget.GroupBox(**group_box_settings, **powerline_fs),
+                widget.WindowName(foreground='e5b567', fontsize=16, **powerline_bs),
+                widget.Clock(foreground=Nord[0], background=Nord[8],
+                             format='%Y-%m-%d %a %I:%M %p', **powerline_bs),
+            ],
+            24,
+            border_color=Nord[8]
+        )
+    )
 ]
 
 # Drag floating layouts.

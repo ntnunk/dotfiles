@@ -16,7 +16,7 @@ run setxkbmap -option caps:escape
 run xrandr --output HDMI-0 --left-of DVI-D-0
 run sleep 5
 run picom --experimental-backends --config $HOME/.config/qtile/picom.conf &
-run feh --bg-scale ~/Pictures/nord-wallpaper-01.webp
+run feh --bg-scale ~/Pictures/nord-arch.png
 run nm-applet
 run flameshot
 run greenclip daemon

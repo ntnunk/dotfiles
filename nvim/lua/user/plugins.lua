@@ -65,15 +65,13 @@ return packer.startup(function(use)
     "folke/which-key.nvim",
     tag = "v1.6.1"
   })
-  --use({
-  --  "norcalli/nvim-colorizer.lua",
-  --  require("colorizer").setup({
-  --    'css';
-  --    'javascript';
-  --    'python'
-  --  })
-  --})
-	use({
+  use("NvChad/nvim-colorizer.lua")
+  require("colorizer").setup({
+    'css';
+    'javascript';
+    'python'
+  })
+use({
 		"ur4ltz/surround.nvim",
 		config = function()
 			require("surround").setup({

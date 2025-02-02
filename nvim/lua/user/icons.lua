@@ -8,26 +8,19 @@ if vim.fn.has "Linux" == 1 or vim.g.use_nerd_icons then
   return {
     kind = {
       Text = "󰉿",
-      -- Method = "m",
-      -- Function = "",
-      -- Constructor = "",
       Method = "󰆧",
       Function = "󰆧",
       Constructor = "󰆧",
       Field = "",
-      -- Variable = "",
       Variable = "",
       Class = "",
       Interface = "",
-      -- Module = "",
       Module = "󰕳",
       Property = "",
       Unit = "",
       Value = "󰎠",
       Enum = "",
-      -- Keyword = "",
       Keyword = "",
-      -- Snippet = "",
       Snippet ="󰃐",
       Color = "",
       File = "󰈙",
@@ -91,7 +84,6 @@ if vim.fn.has "Linux" == 1 or vim.g.use_nerd_icons then
       Note = "󰎚",
       BookMark = "",
       Pencil = "󰏫",
-      -- ChevronRight = "",
       ChevronRight = ">",
       Table = "",
       Calendar = "",
@@ -109,13 +101,12 @@ if vim.fn.has "Linux" == 1 or vim.g.use_nerd_icons then
       Squirrel = "",
       Tag = "",
       Watch = "",
-      Smiley = "ﲃ",
+      Smiley = "󰞅",
       Package = "",
       CircuitBoard = "",
     },
   }
 else
-  --   פּ ﯟ   蘒練 some other good icons
   return {
     kind = {
       Text = " ",

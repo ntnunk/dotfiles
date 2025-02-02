@@ -28,7 +28,7 @@ ZSH_THEME="fox"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git virtualenv shrink-path fis-branch vi-mode zsh-autosuggestions)
+plugins=(git virtualenv shrink-path fis-branch zsh-vi-mode zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
