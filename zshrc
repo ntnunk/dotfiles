@@ -57,13 +57,4 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
-# Specific info for Fortress Information Security
-#if [ -f ~/.fis_info ]; then
-#  . ~/.fis_info
-#fi
-
-# Todo.txt
-#export TODOTXT_DEFAULT_ACTION=ls
-#alias t='todo-txt -d /home/$USER/Documents/VMShare/todo.cfg'
-
-#source ~/workspace/virtenv/bin/activate
+setxkbmap -option caps:swapescape
