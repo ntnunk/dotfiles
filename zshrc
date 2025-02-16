@@ -58,3 +58,6 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 setxkbmap -option caps:swapescape
+
+# Start up a python virtual env
+source ~/.env/bin/activate
