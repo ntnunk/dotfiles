@@ -72,11 +72,12 @@ return {
 				disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 				always_divide_middle = true,
 			},
+			-- TODO: Get lazy_status working
 			sections = {
 				lualine_a = { branch, diagnostics },
 				lualine_b = { mode },
 				lualine_c = {},
-				lualine_x = { lazy_status, diff, spaces, "encoding", filetype },
+				lualine_x = { diff, spaces, "encoding", filetype },
 				lualine_y = { location },
 				lualine_z = { progress },
 			},
