@@ -8,6 +8,7 @@ vim.g.mapleader = " "
 
 -- Disable EX mode since I'm always hitting Q by mistake
 keymap("", "Q", "<Nop>", opts)
+keymap("", "q:", "<Nop>", opts)
 
 -- Modes
 --   normal_mode = "n",
@@ -53,6 +54,9 @@ keymap(
 	{ desc = "Start replace with word under cursor", noremap = true, silent = true }
 )
 keymap("n", "<leader>sc", ":hohl<CR>", { desc = "Clear search highlights", noremap = true, silent = true })
+keymap("n", "<leader>bc", ":bdelete<CR>", { desc = "Delete current buffer", noremap = true, silent = true } )
+keymap("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer", noremap = true, silent = true } )
+keymap("n", "<leader>bp", ":bpreviou<CR>", { desc = "Previous buffer", noremap = true, silent = true } )
 
 -- Insert --
 
