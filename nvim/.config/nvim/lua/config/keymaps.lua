@@ -46,8 +46,13 @@ keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
 
 -- <Leader-s> Start replace command with current word under cursor
-keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Start replace with word under cursor", noremap = true, silent = true })
-keymap("n", "<leader>nh", ":hohl<CR>", { desc = "Clear search highlights", noremap = true, silent = true })
+keymap(
+	"n",
+	"<leader>sr",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Start replace with word under cursor", noremap = true, silent = true }
+)
+keymap("n", "<leader>sc", ":hohl<CR>", { desc = "Clear search highlights", noremap = true, silent = true })
 
 -- Insert --
 

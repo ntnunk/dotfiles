@@ -10,6 +10,7 @@ return {
 			typescriptreact = { "eslint_d" },
 			python = { "pylint" },
 		}
+		lint.linters.pylint.args = { "--rcfile", "/home/fortress/workspace/repos/m32rimm/pylintrc.toml" }
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritepost", "InsertLeave" }, {
@@ -19,7 +20,7 @@ return {
 			end,
 		})
 
-		vim.keymap.set("n", "<leader>l", function()
+		vim.keymap.set("n", "<leader>cl", function()
 			lint.try_lint()
 		end, { desc = "Trigger linting for current file" })
 	end,
