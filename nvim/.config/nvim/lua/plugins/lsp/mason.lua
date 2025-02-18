@@ -23,8 +23,8 @@ return {
 				"bashls",
 				"pyright",
 				"lua_ls",
-				"gopls",
-				"html",
+				"ansiblels",
+				"ts_ls",
 			},
 		})
 
