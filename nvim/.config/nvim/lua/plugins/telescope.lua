@@ -13,6 +13,12 @@ return {
 
 		telescope.setup({
 			defaults = {
+        file_ignore_patterns = {
+          "./archive/*",
+          "archive",
+          "^archive/",
+          "archive/*",
+        },
 				path_display = { "smart" },
 				mappings = {
 					i = {
