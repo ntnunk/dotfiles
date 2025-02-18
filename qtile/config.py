@@ -26,8 +26,10 @@
 
 import os
 import subprocess
-from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, DropDown, Group, Key, Match, ScratchPad, Screen
+
+from libqtile import bar, hook, layout, qtile, widget
+from libqtile.config import (Click, Drag, DropDown, Group, Key, Match,
+                             ScratchPad, Screen)
 from libqtile.lazy import lazy
 from qtile_extras import widget
 from qtile_extras.widget.decorations import PowerLineDecoration
@@ -288,6 +290,8 @@ screens = [
                 ),
                 widget.CPU(background=Nord[4], **powerline),
                 widget.Memory(background=Nord[6], measure_mem='G', **powerline),
+                widget.Volume(background=Nord[7], **powerline),
+                widget.Bluetooth(background=Nord[7], **powerline),
                 widget.Systray(background=Nord[7], **powerline),
                 widget.Clock(foreground=Nord[0], background=Nord[8],
                              format='%Y-%m-%d %a %I:%M %p', **powerline),
