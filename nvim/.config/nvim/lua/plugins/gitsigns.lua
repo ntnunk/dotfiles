@@ -24,7 +24,10 @@ return {
 			map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")
 			map("n", "<leader>gR", gs.reset_buffer, "Reset buffer")
 			map("n", "<leader>gu", gs.undo_stage_hunk, "Undo stage hunk")
-			map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
+			map("n", "<leader>gP", gs.preview_hunk, "Preview hunk")
+
+			map("n", "<leader>gn", "<cmd>Gitsigns nav_hunk next<CR>", "Next hunk")
+			map("n", "<leader>gp", "<cmd>Gitsigns nav_hunk prev<CR>", "Next hunk")
 
 			map("n", "<leader>gb", function()
 				gs.blame_line({ full = true })
