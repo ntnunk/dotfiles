@@ -34,13 +34,19 @@ return {
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
 				opts.desc = "Smart rename"
-				keymap.set("n", "<leader>cn", vim.lsp.buf.rename, opts)
+				keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 
 				opts.desc = "Show buffer diagnostics"
 				keymap.set("n", "<leader>cD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
 				opts.desc = "Show line diagnostics"
 				keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)
+
+        opts.desc = "Jump to next diagnostic error"
+        keymap.set("n", "<leader>cn", vim.diagnostic.goto_next, opts)
+
+        opts.desc = "Jump to previous diagnostic error"
+        keymap.set("n", "<leader>cp", vim.diagnostic.goto_prev, opts)
 
 				opts.desc = "Go to previous diagnostic"
 				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
