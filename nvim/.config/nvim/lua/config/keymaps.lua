@@ -10,6 +10,9 @@ vim.g.mapleader = " "
 keymap("", "Q", "<Nop>", opts)
 keymap("", "q:", "<Nop>", opts)
 
+-- Map W to w since my shift is sometimes sticky
+keymap("n", "W", "w", opts)
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -61,6 +64,6 @@ keymap("n", "<leader>bp", ":bpreviou<CR>", { desc = "Previous buffer", noremap =
 -- Insert --
 
 -- Visual --
--- Move blocks of text up/down in Visua mode, respecting indent
+-- Move blocks of text up/down in Visual mode, respecting indent
 keymap("v", "J", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "K", ":m '<-2<CR>gv=gv", opts)

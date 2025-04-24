@@ -46,7 +46,7 @@ return {
         keymap.set("n", "<leader>cn", vim.diagnostic.goto_next, opts)
 
         opts.desc = "Jump to previous diagnostic error"
-        keymap.set("n", "<leader>cp", vim.diagnostic.goto_prev, opts)
+        keymap.set("n", "<leader>cp", vim.diagnostic.goto_next, opts)
 
 				opts.desc = "Go to previous diagnostic"
 				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -91,6 +91,24 @@ return {
 					},
 				})
 			end,
+      ["pyright"] = function()
+        lspconfig["pyright"].setup({
+          capabilities = capabilities,
+          settings =  {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'workspace',
+                useLibraryCodeForTypes = true,
+                extraPaths = {
+                  '/home/fortress/workspace/repos/m32rimm/fis_common'
+                }
+              },
+            },
+          },
+        })
+      end,
 		})
+    
 	end,
 }
