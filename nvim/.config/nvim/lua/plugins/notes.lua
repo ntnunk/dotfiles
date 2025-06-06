@@ -41,7 +41,6 @@ return {
 			folder = "dailies",
 			date_format = "%Y-%m-%d",
 			default_tags = { "daily-notes" },
-			template = nil,
 		},
 		-- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
 		completion = {
@@ -150,7 +149,7 @@ return {
 
 	-- Optional, for templates (see below).
 	templates = {
-		folder = "templates",
+		folder = "",
 		date_format = "%Y-%m-%d",
 		time_format = "%H:%M",
 		-- A map for custom variables, the key should be the variable and the value a function
