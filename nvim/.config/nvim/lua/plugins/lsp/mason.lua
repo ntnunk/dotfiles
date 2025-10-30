@@ -21,7 +21,8 @@ return {
 		mason_lspconfig.setup({
 			ensure_installed = {
 				"bashls",
-				"pyright",
+				"basedpyright",
+        --"ruff",
 				"lua_ls",
 				"ansiblels",
 				"ts_ls",
@@ -34,6 +35,7 @@ return {
 				"pyink",
 				"prettier",
 				"stylua",
+        "pylint",
 			},
 		})
 	end,

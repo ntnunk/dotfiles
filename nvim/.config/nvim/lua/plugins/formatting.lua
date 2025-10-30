@@ -20,7 +20,7 @@ return {
 		-- Define your formatters
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "isort", "pyink" },
+			python = { "ruff", "ruff_fix", "ruff_organize_imports", "ruff_format", "pyink" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			json = { "prettierd", "prettier", stop_after_first = true },
 		},
@@ -38,6 +38,9 @@ return {
 			pyink = {
 				prepend_args = { "--pyink-use-majority-quotes", "--line-length", "79" },
 			},
+      ruff_format = {
+        prepend_args = {"--config", "line-length=79", "--config", "format.quote-style=\"single\""}
+      }
 		},
 	},
 	init = function()

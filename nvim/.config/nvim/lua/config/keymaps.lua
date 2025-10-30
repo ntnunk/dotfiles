@@ -57,7 +57,7 @@ keymap(
 	{ desc = "Start replace with word under cursor", noremap = true, silent = true }
 )
 keymap("n", "<leader>sc", ":hohl<CR>", { desc = "Clear search highlights", noremap = true, silent = true })
-keymap("n", "<leader>bc", ":bdelete<CR>", { desc = "Delete current buffer", noremap = true, silent = true } )
+keymap("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete current buffer", noremap = true, silent = true } )
 keymap("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer", noremap = true, silent = true } )
 keymap("n", "<leader>bp", ":bpreviou<CR>", { desc = "Previous buffer", noremap = true, silent = true } )
 

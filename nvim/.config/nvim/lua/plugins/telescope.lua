@@ -38,5 +38,9 @@ return {
 		keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", { desc = "Find string in CWD" })
 		keymap.set("n", "<leader>ss", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor in CWD" })
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<CR>", { desc = "Find To-Dos" })
+    keymap.set("n", "<leader>cs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "List all document symbols" })
+    keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "List all current buffers" })
+    keymap.set("n", "<leader>bf", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Fuzzy-find within the current buffer" })
+    keymap.set("n", "<leader>sm", "<cmd>Telescope marks<CR>", { desc = "Show/search current list of Vim marks" })
 	end,
 }

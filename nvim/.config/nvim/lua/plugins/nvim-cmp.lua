@@ -10,13 +10,17 @@ return {
 			build = "make install_jsregexp",
 		},
 		"saadparwaiz1/cmp_luasnip",
-		"rafamadriz/friendly-snippets", -- useful snippets
+    --"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code-like pictograms
 	},
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
+
+    -- Load custom snippets
+    require('snippets.python')
+    require('snippets.bash')
 
 		-- Loads vscode-style snippets installed from plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()

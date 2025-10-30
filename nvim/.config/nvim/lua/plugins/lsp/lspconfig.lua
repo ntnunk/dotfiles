@@ -14,6 +14,15 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client == nil then
+          return
+        end
+        -- if client.name == "ruff" then
+        --   -- disable hover in favor of pyright
+        --   client.server_capabilities.hoverProvider = false
+        -- end
+
 				local opts = { buffer = ev.buf, silent = true }
 				opts.desc = "Go to declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -59,6 +68,7 @@ return {
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>cl", ":LspRestart<CR>", opts)
+
 			end,
 		})
 
@@ -68,6 +78,17 @@ return {
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
+
+    lspconfig.ruff.setup({
+      init_options = {
+        settings = {
+          showSyntaxErrors = true,
+          logLevel = "info",
+          args = { "--config", "~/.config/ruff.toml"},
+          interpreter = "/usr/bin/env python3",
+        },
+      }
+    })
 
 		mason_lspconfig.setup_handlers({
 			function(server_name)
@@ -91,23 +112,86 @@ return {
 					},
 				})
 			end,
-      ["pyright"] = function()
-        lspconfig["pyright"].setup({
+      -- ["pyright"] = function()
+      --   lspconfig["pyright"].setup({
+      --     capabilities = capabilities,
+      --     settings =  {
+      --       pyright = {
+      --         -- Using Ruff's import organizer
+      --         disableOrganizeImports = true,
+      --       },
+      --       python = {
+      --         analysis = {
+      --           autoSearchPaths = true,
+      --           diagnosticMode = 'workspace',
+      --           useLibraryCodeForTypes = true,
+      --           extraPaths = {
+      --             '/home/fortress/workspace/repos/m32rimm/fis_common'
+      --           },
+      --           ignore = { '*' },
+      --         },
+      --       },
+      --     },
+      --   })
+      -- end,
+      ["basedpyright"] = function()
+        lspconfig["basedpyright"].setup({
           capabilities = capabilities,
           settings =  {
-            python = {
+            basedpyright = {
+              disableOrganizeImports = true,
               analysis = {
+                autoImportCompletions = true,
                 autoSearchPaths = true,
+                useLibraryCodeForTypes = false,
+                typeCheckingMode = 'basic',
                 diagnosticMode = 'workspace',
-                useLibraryCodeForTypes = true,
+                autoSearchPath = true,
+                autoFormatStrings = true,
+                exclude = {
+                  "**/__pycache__",
+                  "**/node_modules",
+                  "**/.venv",
+                  "**/venv",
+                  "**/.pytest_cache",
+                  "**/build",
+                  "**/dist"
+                },
+                diagnosticSeverityOverrides = {
+                  reportMissingTypeArgument = false,
+                },
+                -- Suppress "partially unknown type" warnings
+                reportUnknownParameterType = 'none',
+                reportUnknownVariableType = 'none',
+                reportUnknownMemberType = 'none',
+                reportUnknownArgumentType = 'none',
                 extraPaths = {
-                  '/home/fortress/workspace/repos/m32rimm/fis_common'
+                  '/home/fortress/workspace/virtenv312/lib/python3.12/site-packages',
+                  '/home/fortress/workspace/repos/m32rimm/fis_common',
+                  '/home/fortress/workspace/repos/m32rimm/fisio',
+                  '/home/fortress/workspace/repos/m32rimm/clustereng_tools',
+                  '/home/fortress/workspace/repos/m32rimm/fix_tools',
+                  '/home/fortress/workspace/repos/m32rimm/fortress_api',
+                  '/home/fortress/workspace/repos/m32rimm/fptest_module',
+                  '/home/fortress/workspace/repos/m32rimm/email_tools',
                 }
               },
             },
+            python = {
+              pythonPath = '/home/fortress/workspace/virtenv312/bin/python',
+              venvPath = '/home/fortress/workspace',
+              venv = 'virtenv312',
+            }
           },
         })
       end,
+
 		})
+
+    -- vim.keymap.set(
+    --   "n", "<leader>ch",
+    --   "<cmd>lua vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled())<CR>",
+    --   { desc = "Toggle LSP Inlay Hints" }
+    -- )
 	end,
 }

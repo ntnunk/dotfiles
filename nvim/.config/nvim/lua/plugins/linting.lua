@@ -8,9 +8,10 @@ return {
 			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-			python = { "pylint" },
+			python = { "ruff", "pylint", },
 		}
 		lint.linters.pylint.args = { "--rcfile", "/home/fortress/workspace/repos/m32rimm/pylintrc.toml", "-" }
+    lint.linters.ruff.args = { "--config", "/home/fortress/.config/ruff.toml" }
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritepost", "InsertLeave" }, {
