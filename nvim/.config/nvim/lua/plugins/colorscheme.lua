@@ -1,8 +1,8 @@
 return {
-	"olimorris/onedarkpro.nvim",
+  "rmehri01/onenord.nvim",
 	priority = 1000,
 	config = function()
-		vim.cmd("colorscheme onedark")
+		vim.cmd("colorscheme onenord")
 	end,
 }
 -- return {

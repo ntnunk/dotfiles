@@ -10,7 +10,7 @@ function run {
 run xset -dpms
 run xset s 0 0
 run xset s off
-run setxkbmap -option caps:escape
+# run setxkbmap -option caps:escape
 
 
 run xrandr --output HDMI-0 --left-of DVI-D-0

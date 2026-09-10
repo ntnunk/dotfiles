@@ -63,28 +63,28 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["lua_ls"] = function()
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the ls recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-		})
+		-- mason_lspconfig.setup_handlers({
+		-- 	function(server_name)
+		-- 		lspconfig[server_name].setup({
+		-- 			capabilities = capabilities,
+		-- 		})
+		-- 	end,
+		-- 	["lua_ls"] = function()
+		-- 		lspconfig["lua_ls"].setup({
+		-- 			capabilities = capabilities,
+		-- 			settings = {
+		-- 				Lua = {
+		-- 					-- make the ls recognize "vim" global
+		-- 					diagnostics = {
+		-- 						globals = { "vim" },
+		-- 					},
+		-- 					completion = {
+		-- 						callSnippet = "Replace",
+		-- 					},
+		-- 				},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- })
 	end,
 }
